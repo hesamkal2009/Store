@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AccountExpireDate" xml:space="preserve">
+    <value>Account Expire Date</value>
+  </data>
+  <data name="AccountTerminateDateTime" xml:space="preserve">
+    <value>Account Terminate Date Time</value>
+  </data>
+  <data name="AdministratorDescription" xml:space="preserve">
+    <value>Administrator Description</value>
+  </data>
+  <data name="Avatar" xml:space="preserve">
+    <value>Avatar</value>
+  </data>
+  <data name="BirthDate" xml:space="preserve">
+    <value>Birth Date</value>
+  </data>
+  <data name="CellPhoneNumber" xml:space="preserve">
+    <value>Cell Phone Number</value>
+  </data>
+  <data name="CellPhoneNumberVerificationKey" xml:space="preserve">
+    <value>Cell Phone Number Verification Key</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Company Name</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="EmailAddress" xml:space="preserve">
+    <value>Email Address</value>
+  </data>
+  <data name="EmailAddressVerificationKey" xml:space="preserve">
+    <value>Email Address Verification Key</value>
+  </data>
+  <data name="EntitiesName" xml:space="preserve">
+    <value>Users</value>
+  </data>
+  <data name="EntitiesNameOf" xml:space="preserve">
+    <value>Users of</value>
+  </data>
+  <data name="EntityName" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="EntityNameOf" xml:space="preserve">
+    <value>User of</value>
+  </data>
+  <data name="Error001" xml:space="preserve">
+    <value>Email Address is already exist! Please choose another one.</value>
+  </data>
+  <data name="Error002" xml:space="preserve">
+    <value>There is no any user with this email address!</value>
+  </data>
+  <data name="Error003" xml:space="preserve">
+    <value>Username and/or Password is not correct! Please try again...</value>
+  </data>
+  <data name="Error004" xml:space="preserve">
+    <value>Cell Phone Number is already exist! Please choose another one.</value>
+  </data>
+  <data name="Error005" xml:space="preserve">
+    <value>Your email address was not verified! Please check your email box.</value>
+  </data>
+  <data name="Error006" xml:space="preserve">
+    <value>You should not login at this time! Please contact support.</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="Gender" xml:space="preserve">
+    <value>Gender</value>
+  </data>
+  <data name="HasAvatar" xml:space="preserve">
+    <value>Has Avatar</value>
+  </data>
+  <data name="HasResume" xml:space="preserve">
+    <value>Has Resume</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Information001" xml:space="preserve">
+    <value>Your registration done. We sent you an email for verification.</value>
+  </data>
+  <data name="Information002" xml:space="preserve">
+    <value>We send again the email address verification key.</value>
+  </data>
+  <data name="Information003" xml:space="preserve">
+    <value>We generated a nice password and sent it to your email.</value>
+  </data>
+  <data name="IsAccountExpirable" xml:space="preserve">
+    <value>Account Expirable</value>
+  </data>
+  <data name="IsAccountTerminated" xml:space="preserve">
+    <value>Account Terminated</value>
+  </data>
+  <data name="IsCellPhoneNumberVerified" xml:space="preserve">
+    <value>Cell Phone Number Verified</value>
+  </data>
+  <data name="IsDirectContactable" xml:space="preserve">
+    <value>Direct Contactable</value>
+  </data>
+  <data name="IsEmailAddressVerified" xml:space="preserve">
+    <value>Email Address Verified</value>
+  </data>
+  <data name="IsInBlackList" xml:space="preserve">
+    <value>Black List</value>
+  </data>
+  <data name="IsProfilePublic" xml:space="preserve">
+    <value>Profile is Public</value>
+  </data>
+  <data name="JobTitle" xml:space="preserve">
+    <value>Job Title</value>
+  </data>
+  <data name="LastLoginDateTime" xml:space="preserve">
+    <value>Last Login Date Time</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="LoginCount" xml:space="preserve">
+    <value>Login Count</value>
+  </data>
+  <data name="NationalCode" xml:space="preserve">
+    <value>National Code</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="ProfileLevel" xml:space="preserve">
+    <value>Profile Level</value>
+  </data>
+  <data name="RegisterDateTime" xml:space="preserve">
+    <value>Register Date Time</value>
+  </data>
+  <data name="RegisterIP" xml:space="preserve">
+    <value>Register IP</value>
+  </data>
+  <data name="ResetPasswordDateTime" xml:space="preserve">
+    <value>Reset Password Date Time</value>
+  </data>
+  <data name="ResetPasswordVerificationKey" xml:space="preserve">
+    <value>Reset Password Verification Key</value>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="UpdateProfileDateTime" xml:space="preserve">
+    <value>Update Profile Date Time</value>
+  </data>
+  <data name="UsersList" xml:space="preserve">
+    <value>Users List</value>
+  </data>
+  <data name="Warning001" xml:space="preserve">
+    <value>This user has full control and it does not need any permission!</value>
+  </data>
+  <data name="Information004" xml:space="preserve">
+    <value>The new password has been set for the user.</value>
+  </data>
+  <data name="Error007" xml:space="preserve">
+    <value>Your email address has been already verified!</value>
+  </data>
+  <data name="Error008" xml:space="preserve">
+    <value>You did not specify correct current password!</value>
+  </data>
+  <data name="Information005" xml:space="preserve">
+    <value>The new password has been set.</value>
+  </data>
+  <data name="VerifiedEmailAddressOrCellPhoneNumber" xml:space="preserve">
+    <value>Verified Email Address or Cell Phone Number</value>
+  </data>
+  <data name="Age" xml:space="preserve">
+    <value>Age</value>
+  </data>
+  <data name="Information006" xml:space="preserve">
+    <value>We sent again a SMS for your mobile verification.</value>
+  </data>
+  <data name="Error009" xml:space="preserve">
+    <value>Cell phone number verification key is not valid!</value>
+  </data>
+  <data name="Information007" xml:space="preserve">
+    <value>Your cell phone number is verified</value>
+  </data>
+  <data name="IsAddressPublic" xml:space="preserve">
+    <value>Is Address Public</value>
+  </data>
+  <data name="IsBirthDatePublic" xml:space="preserve">
+    <value>Is Birth Date Public</value>
+  </data>
+  <data name="IsCellPhoneNumberPublic" xml:space="preserve">
+    <value>Is Cell Phone Number Public</value>
+  </data>
+  <data name="IsEmailAddressPublic" xml:space="preserve">
+    <value>Is Email Address Public</value>
+  </data>
+  <data name="Error010" xml:space="preserve">
+    <value>National Code is not Valid!</value>
+  </data>
+  <data name="HttpReferer" xml:space="preserve">
+    <value>Http Referer</value>
+  </data>
+  <data name="Resume" xml:space="preserve">
+    <value>Resume</value>
+  </data>
+  <data name="IsAvatarPublic" xml:space="preserve">
+    <value>Is Avatar Public</value>
+  </data>
+  <data name="FinishPlanDateTime" xml:space="preserve">
+    <value>Finish Plan Date Time</value>
+  </data>
+  <data name="StartPlanDateTime" xml:space="preserve">
+    <value>Start Plan Date Time</value>
+  </data>
+  <data name="Plan" xml:space="preserve">
+    <value>Plan</value>
+  </data>
+  <data name="BankAccountNumber" xml:space="preserve">
+    <value>Bank Account Number</value>
+  </data>
+  <data name="BankCardNumber" xml:space="preserve">
+    <value>Bank Card Number</value>
+  </data>
+  <data name="BankName" xml:space="preserve">
+    <value>Bank Name</value>
+  </data>
+  <data name="BankShabaNumber" xml:space="preserve">
+    <value>Bank Shaba Number</value>
+  </data>
+  <data name="UpdateUserBankInformation" xml:space="preserve">
+    <value>Update User Bank Information</value>
+  </data>
+  <data name="DeleteNotVerifiedEmailAddressUsers" xml:space="preserve">
+    <value>Delete Not Verified Email Address Users</value>
+  </data>
+</root>
