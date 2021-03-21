@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>درباره ما</value>
+  </data>
+  <data name="AdministratorControlPanel" xml:space="preserve">
+    <value>پنل مديريتی</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>بازگشت</value>
+  </data>
+  <data name="BackTo" xml:space="preserve">
+    <value>بازگشت به</value>
+  </data>
+  <data name="BackToList" xml:space="preserve">
+    <value>بازگشت به فهرست</value>
+  </data>
+  <data name="Backup" xml:space="preserve">
+    <value>پشتيبان‌گيری اطلاعات</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>انصراف</value>
+  </data>
+  <data name="ChangeCulture" xml:space="preserve">
+    <value>تغيير زبان پايگاه</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>تغيير گذرواژه</value>
+  </data>
+  <data name="Contact" xml:space="preserve">
+    <value>تماس با ما</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>کپی</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>ايجاد</value>
+  </data>
+  <data name="CreateFolder" xml:space="preserve">
+    <value>ايجاد پوشه</value>
+  </data>
+  <data name="CreateManual" xml:space="preserve">
+    <value>ايجاد دستی</value>
+  </data>
+  <data name="CreateOf" xml:space="preserve">
+    <value>ايجاد</value>
+  </data>
+  <data name="CreateRoot" xml:space="preserve">
+    <value>ايجاد ريشه</value>
+  </data>
+  <data name="DefineResponsibleUsers" xml:space="preserve">
+    <value>معرفی مسوولين منابع انسانی شرکت</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="DeleteOf" xml:space="preserve">
+    <value>حذف</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>نمايش</value>
+  </data>
+  <data name="DetailsOf" xml:space="preserve">
+    <value>نمايش</value>
+  </data>
+  <data name="DetailsWithChildren" xml:space="preserve">
+    <value>نمايش همراه با فهرست فعاليت‌ها</value>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>نمايش</value>
+  </data>
+  <data name="DisplayExamUsers" xml:space="preserve">
+    <value>نمايش کاربران دعوت شده به آزمون</value>
+  </data>
+  <data name="DisplayMyPosts" xml:space="preserve">
+    <value>نمايش مطالب من</value>
+  </data>
+  <data name="DisplayPage" xml:space="preserve">
+    <value>نمايش صفحه</value>
+  </data>
+  <data name="DisplayPhoto" xml:space="preserve">
+    <value>نمايش عکس</value>
+  </data>
+  <data name="DisplayPhotoWithDetails" xml:space="preserve">
+    <value>نمايش عکس با جزئيات</value>
+  </data>
+  <data name="DisplayProfile" xml:space="preserve">
+    <value>نمايش مشخصات</value>
+  </data>
+  <data name="DisplayQuestionsAndAnswers" xml:space="preserve">
+    <value>نمايش سوالات و پاسخ‌ها</value>
+  </data>
+  <data name="DisplayQuestionsAndAnswersAndCorrectAnswers" xml:space="preserve">
+    <value>نمايش سوالات، پاسخ‌ها و مشخص کردن پاسخ‌های صحيح</value>
+  </data>
+  <data name="DisplayRelatedExams" xml:space="preserve">
+    <value>نمايش آزمون‌های مرتبط</value>
+  </data>
+  <data name="DisplayResume" xml:space="preserve">
+    <value>نمايش مشخصات</value>
+  </data>
+  <data name="DisplaySubMenuItems" xml:space="preserve">
+    <value>نمايش زيرمجموعه</value>
+  </data>
+  <data name="DisplaySubPhotoAlbum" xml:space="preserve">
+    <value>نمايش زيرمجموعه</value>
+  </data>
+  <data name="DisplayUserAvatar" xml:space="preserve">
+    <value>نمايش عکس کاربر</value>
+  </data>
+  <data name="DisplayUserExamDetails" xml:space="preserve">
+    <value>نمايش جزئيات آزمون برگزار شده</value>
+  </data>
+  <data name="DisplayUserProfile" xml:space="preserve">
+    <value>نمايش مشخصات کاربر</value>
+  </data>
+  <data name="Download" xml:space="preserve">
+    <value>دريافت فايل</value>
+  </data>
+  <data name="DownloadResume" xml:space="preserve">
+    <value>دريافت رزومه</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>ويرايش</value>
+  </data>
+  <data name="EditLayoutContent" xml:space="preserve">
+    <value>ويرايش ظاهر قالب صفحه</value>
+  </data>
+  <data name="EditLocalizedPageContent" xml:space="preserve">
+    <value>ويرايش محتوای صفحه</value>
+  </data>
+  <data name="EditOf" xml:space="preserve">
+    <value>ويرايش</value>
+  </data>
+  <data name="Error_AccessDenied" xml:space="preserve">
+    <value>عدم امکان دسترسی</value>
+  </data>
+  <data name="Error_HttpNotFound" xml:space="preserve">
+    <value>اطلاعات يافت نشد</value>
+  </data>
+  <data name="Error_InvalidRequest" xml:space="preserve">
+    <value>درخواست غيرمعتبر</value>
+  </data>
+  <data name="Error_TemporaryOffline" xml:space="preserve">
+    <value>عدم دسترسی به صورت موقت</value>
+  </data>
+  <data name="Error_Unexpected" xml:space="preserve">
+    <value>خطای ناشناخته</value>
+  </data>
+  <data name="ExportToExcel" xml:space="preserve">
+    <value>خروجی به اکسل</value>
+  </data>
+  <data name="FirstStepOfUpdateProfile" xml:space="preserve">
+    <value>اولين مرحله به روز رسانی اطلاعات</value>
+  </data>
+  <data name="FixText" xml:space="preserve">
+    <value>ويرايش متن</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>کلمه عبورم را فراموش کرده‌ام</value>
+  </data>
+  <data name="GetCities" xml:space="preserve">
+    <value>انتخاب شهرها</value>
+  </data>
+  <data name="GetData" xml:space="preserve">
+    <value>دريافت اطلاعات</value>
+  </data>
+  <data name="GetEducationBranches" xml:space="preserve">
+    <value>انتخاب رشته‌های تحصيلی</value>
+  </data>
+  <data name="GetEducationPlaces" xml:space="preserve">
+    <value>انتخاب محل‌های تحصيل</value>
+  </data>
+  <data name="GetPeople" xml:space="preserve">
+    <value>دريافت اطلاعات همه اشخاص</value>
+  </data>
+  <data name="GetUsers" xml:space="preserve">
+    <value>دريافت اطلاعات همه کاربران</value>
+  </data>
+  <data name="GetUserStates" xml:space="preserve">
+    <value>دريافت وضعيت‌های متقاضيان برای نمايش در نمودار</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>راهنما</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>صفحه نخست</value>
+  </data>
+  <data name="HomeOfParentMenuItem" xml:space="preserve">
+    <value>خانه</value>
+  </data>
+  <data name="HomeOfParentPhotoAlbum" xml:space="preserve">
+    <value>خانه</value>
+  </data>
+  <data name="Index" xml:space="preserve">
+    <value>فهرست</value>
+  </data>
+  <data name="IndexOfRoot" xml:space="preserve">
+    <value>فهرست ريشه</value>
+  </data>
+  <data name="InviteUsersForExam" xml:space="preserve">
+    <value>دعوت کاربران برای شرکت در آزمون</value>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>فهرست</value>
+  </data>
+  <data name="ListOf" xml:space="preserve">
+    <value>فهرست</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ورود</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>خروج</value>
+  </data>
+  <data name="ManageFoldersAndFiles" xml:space="preserve">
+    <value>مديريت پوشه‌ها و فايل‌ها</value>
+  </data>
+  <data name="ManageOf" xml:space="preserve">
+    <value>مديريت</value>
+  </data>
+  <data name="ManageOfResponsibleUsers" xml:space="preserve">
+    <value>مديريت مسوولين منابع انسانی شرکت</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>ادامه مطلب</value>
+  </data>
+  <data name="Participate" xml:space="preserve">
+    <value>شرکت در آزمون</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>ثبت نام</value>
+  </data>
+  <data name="RegisterResume" xml:space="preserve">
+    <value>درخواست استخدام</value>
+  </data>
+  <data name="RegistrationDone" xml:space="preserve">
+    <value>صفحه پس از ثبت‌نام موفق</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>تغييرنام</value>
+  </data>
+  <data name="Report" xml:space="preserve">
+    <value>گزارش</value>
+  </data>
+  <data name="Report1" xml:space="preserve">
+    <value>گزارش فروش به تفکيک شعبه/کالا</value>
+  </data>
+  <data name="Report2" xml:space="preserve">
+    <value>گزارش سرجمع فروش به تفکيک کالا</value>
+  </data>
+  <data name="Report3" xml:space="preserve">
+    <value>گزارش سرجمع فروش به تفکيک شعبه/کالا</value>
+  </data>
+  <data name="Report4" xml:space="preserve">
+    <value>گزارش فروش به تفکيک کالا</value>
+  </data>
+  <data name="Report5" xml:space="preserve">
+    <value>گزارش موجودی</value>
+  </data>
+  <data name="Report6" xml:space="preserve">
+    <value>گزارش موجودی به تفکيک شعبه</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>گذرواژه را فراموش کرده ام!</value>
+  </data>
+  <data name="Restore" xml:space="preserve">
+    <value>بازيابی اطلاعات</value>
+  </data>
+  <data name="Return" xml:space="preserve">
+    <value>بازگشت</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>ذخيره</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>جستجو</value>
+  </data>
+  <data name="SelectActions" xml:space="preserve">
+    <value>انتخاب فعاليت‌ها</value>
+  </data>
+  <data name="SelectActionsOf" xml:space="preserve">
+    <value>انتخاب فعاليت‌های</value>
+  </data>
+  <data name="SelectGroups" xml:space="preserve">
+    <value>انتخاب گروه‌ها</value>
+  </data>
+  <data name="SelectGroupsOf" xml:space="preserve">
+    <value>انتخاب گروه‌های</value>
+  </data>
+  <data name="SelectLabels" xml:space="preserve">
+    <value>انتخاب برچسب‌ها</value>
+  </data>
+  <data name="SelectLabelsOf" xml:space="preserve">
+    <value>انتخاب برچسب‌های</value>
+  </data>
+  <data name="SelectPages" xml:space="preserve">
+    <value>انتخاب صفحات</value>
+  </data>
+  <data name="SelectPagesForGroup" xml:space="preserve">
+    <value>انتخاب صفحات</value>
+  </data>
+  <data name="SelectPagesForLayout" xml:space="preserve">
+    <value>انتخاب صفحات پويا</value>
+  </data>
+  <data name="SelectPagesOf" xml:space="preserve">
+    <value>انتخاب صفحات</value>
+  </data>
+  <data name="SelectProjectActionsForGroup" xml:space="preserve">
+    <value>انتخاب فعاليت‌ها</value>
+  </data>
+  <data name="SelectProjectActionsForLayout" xml:space="preserve">
+    <value>انتخاب صفحات ايستا</value>
+  </data>
+  <data name="SelectProjectActionsForUser" xml:space="preserve">
+    <value>انتخاب فعاليت‌ها</value>
+  </data>
+  <data name="SelectQuestionsForExam" xml:space="preserve">
+    <value>انتخاب سوالات</value>
+  </data>
+  <data name="SelectUsers" xml:space="preserve">
+    <value>انتخاب کاربران</value>
+  </data>
+  <data name="SendAgainCellPhoneVerificationKey" xml:space="preserve">
+    <value>ارسال اس ام اس، برای تاييد صحت شماره همراه</value>
+  </data>
+  <data name="SendAgainEmailAddressVerificationKey" xml:space="preserve">
+    <value>ارسال مجدد نامه الکترونيکی، برای تاييد صحت نشانی پست الکترونيکی</value>
+  </data>
+  <data name="Sync" xml:space="preserve">
+    <value>به روزرسانی سيستم</value>
+  </data>
+  <data name="TerminateAccount" xml:space="preserve">
+    <value>خاتمه دسترسی به پايگاه</value>
+  </data>
+  <data name="TermsAndConditions" xml:space="preserve">
+    <value>صفحه شرايط ثبت‌نام</value>
+  </data>
+  <data name="UpdateProfile" xml:space="preserve">
+    <value>ويرايش مشخصات</value>
+  </data>
+  <data name="UploadAvatar" xml:space="preserve">
+    <value>ارسال عکس</value>
+  </data>
+  <data name="UploadFile" xml:space="preserve">
+    <value>ارسال فايل</value>
+  </data>
+  <data name="UploadImageForCourse" xml:space="preserve">
+    <value>ارسال تصوير</value>
+  </data>
+  <data name="UploadResume" xml:space="preserve">
+    <value>ارسال رزومه</value>
+  </data>
+  <data name="UserControlPanel" xml:space="preserve">
+    <value>پنل کاربری</value>
+  </data>
+  <data name="VerifyUserCellPhoneNumber" xml:space="preserve">
+    <value>تاييد صحت شماره تلفن همراه</value>
+  </data>
+  <data name="VerifyUserEmailAddress" xml:space="preserve">
+    <value>تاييد صحت نشانی پست الکترونيکی</value>
+  </data>
+  <data name="GetUpdateProfileProgressPercent" xml:space="preserve">
+    <value>دريافت وضعيت به روز رسانی اطلاعات متقاضی</value>
+  </data>
+  <data name="Dashboard" xml:space="preserve">
+    <value>داشبورد</value>
+  </data>
+  <data name="GetOnlineUsers" xml:space="preserve">
+    <value>دريافت کاربران آنلاين</value>
+  </data>
+  <data name="DisplayOnlineUsers" xml:space="preserve">
+    <value>نمايش کاربران آنلاين</value>
+  </data>
+  <data name="UserDashboard" xml:space="preserve">
+    <value>داشبورد کاربر</value>
+  </data>
+  <data name="OnlineUsers" xml:space="preserve">
+    <value>کاربران آنلاين</value>
+  </data>
+  <data name="UserLoginLogs" xml:space="preserve">
+    <value>رواديد ورود و خروج کاربران</value>
+  </data>
+  <data name="DisplayUserLoginLogs" xml:space="preserve">
+    <value>نمايش رواديد ورود و خروج</value>
+  </data>
+  <data name="GetUserLoginLogs" xml:space="preserve">
+    <value>دريافت اطلاعات رواديد ورود و خروج کاربر</value>
+  </data>
+  <data name="DisplayForRss" xml:space="preserve">
+    <value>نمايش برای RSS</value>
+  </data>
+  <data name="GetGendersCount" xml:space="preserve">
+    <value>دريافت تعداد کاربران برحسب جنسيت</value>
+  </data>
+  <data name="GetUserEducationTypesCount" xml:space="preserve">
+    <value>دريافت تعداد کاربران برحسب ميزان تحصيلات</value>
+  </data>
+  <data name="GetPosts" xml:space="preserve">
+    <value>دريافت اطلاعات همه مطالب</value>
+  </data>
+  <data name="BackupDatabase" xml:space="preserve">
+    <value>پشتيبان‌گيری از بانک اطلاعاتی</value>
+  </data>
+  <data name="RestoreDatabase" xml:space="preserve">
+    <value>بارگذاری مجدد بانک اطلاعاتی</value>
+  </data>
+  <data name="GetUserPosts" xml:space="preserve">
+    <value>دريافت مطالب کاربر</value>
+  </data>
+  <data name="SelectUsersOf" xml:space="preserve">
+    <value>انتخاب کاربران</value>
+  </data>
+  <data name="LocalizedTemplatesController_Edit" xml:space="preserve">
+    <value>ويرايش محتوای فايل</value>
+  </data>
+  <data name="LocalizedTemplatesController_Index" xml:space="preserve">
+    <value>فهرست فايل‌های مربوط به نامه‌های الکترونيکی و پيام کوتاه</value>
+  </data>
+  <data name="DeleteFile" xml:space="preserve">
+    <value>حذف فايل</value>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>پيش‌نمايش</value>
+  </data>
+</root>
