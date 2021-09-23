@@ -16,13 +16,13 @@ import config from "../config.json";
 
 //#region //* Action Wrappers
 
-export const getUsers = () => (dispatch, getState) => {
-	const { lastFetched } = getState().entities.users;
-	console.log(lastFetched);
+export const callForUsers = () => (dispatch, getState) => {
+	const { list, lastFetched } = getState().entities.users;
 
-	const diffInMinutes = moment().diff(moment(lastFetched), "seconds");
-	console.log(diffInMinutes);
-	if (diffInMinutes < 2) return;
+	if (list && list.length >= 0) {
+		const diffInMinutes = moment().diff(moment(lastFetched), "minutes");
+		if (diffInMinutes < 10) return;
+	}
 
 	return dispatch(
 		apiCallBegan({
@@ -36,19 +36,12 @@ export const getUsers = () => (dispatch, getState) => {
 
 //#endregion
 
-//#region //* Selector - Memoization Done by reselect
+//#region //* Selectors
 
-// The functions below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.user.value)`
-export const getUsersCount = (state) => state.entities.posts.list.length;
-export const getAllUsers = (state) => state.entities.posts.list;
-
-export const getUsersOfUserId = createSelector(
-	(state) => state.entities.user,
-	(state) => state.entities.users, // Read users from state and then do the math in the next line
-	(user, users) => user.list.filter((user) => !user.resolved)
-);
+export const getUsersCount = () =>
+	createSelector((state) => state.entities.users.list.length);
+export const getUsers = () =>
+	createSelector((state) => state.entities.users.list);
 
 //#endregion
 
@@ -59,9 +52,9 @@ export const getUsersOfUserId = createSelector(
 //#region //! State Initialization
 
 const initialState = {
+	list: [],
 	loading: false,
-	list: {},
-	lastFetched: Date.now(),
+	lastFetched: null,
 };
 
 //#endregion
@@ -111,6 +104,7 @@ const user = createSlice({
 		usersReceived: (users, action) => {
 			users.list = action.payload;
 			users.loading = false;
+			users.lastFetched = Date.now();
 		},
 		usersRequestFailed: (users, action) => {
 			users.loading = false;

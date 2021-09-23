@@ -2,7 +2,7 @@
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { apiCallBegan } from "./_actions/api";
+import { apiCallBegan, apiCallSuccess, apiCallFailed } from "./_actions/api";
 import moment from "moment";
 import config from "../config.json";
 
@@ -14,13 +14,15 @@ import config from "../config.json";
 
 //#endregion
 
-//#region //* Action Creators Wrappers
+//#region //* Action Wrappers
 
 export const getPosts = () => (dispatch, getState) => {
-	const { lastFetched } = getState().entities.users;
+	const { list, lastFetched } = getState().entities.posts;
 
-	const diffInMinutes = moment().diff(moment(lastFetched), "seconds");
-	if (diffInMinutes < 2) return;
+	if (list && list.length >= 0) {
+		const diffInMinutes = moment().diff(moment(lastFetched), "minutes");
+		if (diffInMinutes < 10) return;
+	}
 
 	return dispatch(
 		apiCallBegan({
@@ -34,20 +36,16 @@ export const getPosts = () => (dispatch, getState) => {
 
 //#endregion
 
-//#region //* Selector - Memoization Done by reselect
+//#region //* Selectors
 
-// The functions below is called a selector and allows us to select a value from
-// the state. Selectors can also be defined inline where they're used instead of
-// in the slice file. For example: `useSelector((state: RootState) => state.post.value)`
-export const getPostsCount = (state) => state.entities.posts.list.length;
-export const getAllPosts = (state) => state.entities.posts.list;
+export const selectPosts = (state) => state.entities.posts.list;
+export const selectPostsCount = (state) => state.entities.posts.list.length;
 
-export const getPostsOfUserId = createSelector(
-	(state) => state.entities.post,
-	(state) => state.entities.posts, // Read users from state and then do the math in the next line
-	(post, posts) => post.list.filter((post) => !post.resolved)
-);
-
+export const selectPostsForUserId = (userId) =>
+	createSelector(
+		(state) => state.entities.posts.list,
+		(list) => list.filter((post) => post.userId === userId)
+	);
 //#endregion
 
 //! *****
@@ -57,9 +55,9 @@ export const getPostsOfUserId = createSelector(
 //#region //! State Initialization
 
 const initialState = {
-	loading: false,
 	list: [],
-	lastFetched: Date.now(),
+	loading: false,
+	lastFetched: null,
 };
 
 //#endregion
@@ -109,6 +107,7 @@ const post = createSlice({
 		postsReceived: (posts, action) => {
 			posts.list = action.payload;
 			posts.loading = false;
+			posts.lastFetched = Date.now();
 		},
 		postsRequestFailed: (posts, action) => {
 			posts.loading = false;
@@ -124,10 +123,10 @@ const post = createSlice({
 			})
 			.addCase(doActionAsync.fulfilled, (posts, action) => {
 				posts.loading = false;
-				posts.list += action.payload;
+				posts.list = action.payload;
 			})
 			.addCase(doActionAsync.rejected, (posts, action) => {
-				posts.loading = false; // Alert user
+				posts.loading = false; // Alert post
 			});
 	},
 });

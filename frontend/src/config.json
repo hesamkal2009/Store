@@ -1,13 +1,13 @@
 {
-  "baseURL": "http://jsonplaceholder.typicode.com/",
-  "posts": {
-    "urls": {
-      "get": "/posts"
-    }
-  },
-  "users": {
-    "urls": {
-      "get": "/users"
-    }
-  }
+	"baseURL": "http://jsonplaceholder.typicode.com/",
+	"posts": {
+		"urls": {
+			"get": "/posts"
+		}
+	},
+	"users": {
+		"urls": {
+			"get": "/users"
+		}
+	}
 }

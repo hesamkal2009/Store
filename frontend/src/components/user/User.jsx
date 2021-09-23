@@ -3,7 +3,7 @@ import React from "react";
 class User extends React.Component {
 	constructor(props) {
 		super(props);
-		this.props.getUsers();
+		this.props.callForUsers();
 	}
 
 	render() {
@@ -11,8 +11,10 @@ class User extends React.Component {
 			<div>
 				<h1>Users</h1>
 				<ul>
-					{this.props.list.length > 0 &&
-						this.props.list.map((user) => <li key={user.id}>{user.email}</li>)}
+					{console.log(this.props)}
+					{this.props.state.entities.users.list.map((user) => (
+						<li key={user.id}>{user.email}</li>
+					))}
 				</ul>
 			</div>
 		);
