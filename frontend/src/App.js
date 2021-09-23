@@ -1,99 +1,88 @@
 import React from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import {
-  notFound,
-  internalServerError,
-  unAuthorized,
-  forbidden,
-} from "./library/constants/errorTypes";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import "../node_modules/bootstrap/dist/css/bootstrap-reboot.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css.map";
+import "../node_modules/bootstrap/dist/js/bootstrap";
+
+//! font-awesome config
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons"; //TODO: Check theses sizes
+import { far } from "@fortawesome/free-regular-svg-icons";
+import { fab } from "@fortawesome/free-brands-svg-icons";
 import "./scss/style.scss";
 
+library.add(far, fas, fab);
+
 const loading = (
-  <div className="pt-3 text-center">
-    <div className="sk-spinner sk-spinner-pulse"></div>
-  </div>
+	<div className="pt-3 text-center">
+		<FontAwesomeIcon icon={["fas", "spinner"]} spin={true} size="6x" />
+	</div>
 );
 
-// Layout
-const Home = React.lazy(() => import("./pages/Home"));
+//? Layout
+const TheLayout = React.lazy(() => import("./views/containers/TheLayout"));
 
-// Pages
-const User = React.lazy(() => import("./pages/user/User"));
-const Posts = React.lazy(() => import("./pages/posts/Posts"));
+//? Pages
+
 const Login = React.lazy(() => import("./pages/login/Login"));
-const UserConnect = React.lazy(() => import("./pages/user/UserConnect"));
 const Register = React.lazy(() => import("./pages/register/Register"));
-const ErrorPage = React.lazy(() => import("./library/pages/DynamicErrors"));
+const Page401 = React.lazy(() => import("./pages/errors/Page401"));
+const Page403 = React.lazy(() => import("./pages/errors/Page403"));
+const Page404 = React.lazy(() => import("./pages/errors/Page404"));
+const Page500 = React.lazy(() => import("./pages/errors/Page500"));
 
 function App() {
-  return (
-    <React.Fragment>
-      <React.Suspense fallback={loading}>
-        <Switch>
-          <Route
-            path="/users"
-            name="User Page"
-            render={(props) => (
-              <UserConnect>
-                <User {...props} />
-              </UserConnect>
-            )}
-          />
-          <Route
-            path="/posts"
-            name="Login Page"
-            render={(props) => <Posts {...props} />}
-          />
-          <Route
-            path="/login"
-            name="Login Page"
-            render={(props) => <Login {...props} />}
-          />
-          <Route
-            path="/register"
-            name="Register Page"
-            render={(props) => <Register {...props} />}
-          />
-          <Route
-            exact
-            path="/401"
-            name="Page 401"
-            render={(props) => (
-              <ErrorPage {...props} errorType={unAuthorized} />
-            )}
-          />
-          <Route
-            exact
-            path="/403"
-            name="Page 403"
-            render={(props) => <ErrorPage {...props} errorType={forbidden} />}
-          />
-          <Route
-            exact
-            path="/404"
-            name="Page 404"
-            render={(props) => <ErrorPage {...props} errorType={notFound} />}
-          />
-          <Route
-            exact
-            path="/500"
-            name="Page 500"
-            render={(props) => (
-              <ErrorPage {...props} errorType={internalServerError} />
-            )}
-          />
-          <Route
-            exact
-            path="/"
-            name="Home"
-            render={(props) => <Home {...props} />}
-          />
-          <Redirect from="/" to="/" />
-          <Redirect to="/404" />
-        </Switch>
-      </React.Suspense>
-    </React.Fragment>
-  );
+	return (
+		<BrowserRouter>
+			<React.Suspense fallback={loading}>
+				<Switch>
+					<Route
+						exact
+						path="/login"
+						name="Login Page"
+						render={(props) => <Login {...props} />}
+					/>
+					<Route
+						exact
+						path="/register"
+						name="Register Page"
+						render={(props) => <Register {...props} />}
+					/>
+					<Route
+						exact
+						path="/401"
+						name="Page 401"
+						render={(props) => <Page401 {...props} />}
+					/>
+					<Route
+						exact
+						path="/403"
+						name="Page 403"
+						render={(props) => <Page403 {...props} />}
+					/>
+					<Route
+						exact
+						path="/404"
+						name="Page 404"
+						render={(props) => <Page404 {...props} />}
+					/>
+					<Route
+						exact
+						path="/500"
+						name="Page 500"
+						render={(props) => <Page500 {...props} />}
+					/>
+					<Route
+						path="/"
+						name="root"
+						render={(props) => <TheLayout {...props} />}
+					/>
+				</Switch>
+			</React.Suspense>
+		</BrowserRouter>
+	);
 }
 
 export default App;

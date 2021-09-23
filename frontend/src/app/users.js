@@ -1,7 +1,8 @@
 //#region //! Default Imports
 
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { apiCallBegan } from "./_actions/api";
+import { createSelector } from "reselect";
+import { apiCallBegan, apiCallSuccess, apiCallFailed } from "./_actions/api";
 import moment from "moment";
 import config from "../config.json";
 
@@ -17,9 +18,11 @@ import config from "../config.json";
 
 export const getUsers = () => (dispatch, getState) => {
 	const { lastFetched } = getState().entities.users;
+	console.log(lastFetched);
 
 	const diffInMinutes = moment().diff(moment(lastFetched), "seconds");
-	if (diffInMinutes > 10) return;
+	console.log(diffInMinutes);
+	if (diffInMinutes < 2) return;
 
 	return dispatch(
 		apiCallBegan({
@@ -38,7 +41,14 @@ export const getUsers = () => (dispatch, getState) => {
 // The functions below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.user.value)`
-export const getUsersCount = (state) => state.users.length;
+export const getUsersCount = (state) => state.entities.posts.list.length;
+export const getAllUsers = (state) => state.entities.posts.list;
+
+export const getUsersOfUserId = createSelector(
+	(state) => state.entities.user,
+	(state) => state.entities.users, // Read users from state and then do the math in the next line
+	(user, users) => user.list.filter((user) => !user.resolved)
+);
 
 //#endregion
 
@@ -50,7 +60,7 @@ export const getUsersCount = (state) => state.users.length;
 
 const initialState = {
 	loading: false,
-	list: [],
+	list: {},
 	lastFetched: Date.now(),
 };
 
@@ -116,7 +126,10 @@ const user = createSlice({
 			})
 			.addCase(doActionAsync.fulfilled, (users, action) => {
 				users.loading = false;
-				users.list += action.payload;
+				users.list = action.payload;
+			})
+			.addCase(doActionAsync.rejected, (users, action) => {
+				users.loading = false; // Alert user
 			});
 	},
 });
@@ -125,8 +138,7 @@ const user = createSlice({
 
 //#region //! Exports
 
-export const { usersRequested, usersReceived, usersRequestFailed } =
-	user.actions;
+const { usersRequested, usersReceived, usersRequestFailed } = user.actions;
 export default user.reducer;
 
 //#endregion

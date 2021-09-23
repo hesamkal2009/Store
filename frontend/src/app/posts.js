@@ -17,10 +17,11 @@ import config from "../config.json";
 //#region //* Action Creators Wrappers
 
 export const getPosts = () => (dispatch, getState) => {
-	const { lastFetched } = getState().entities.posts;
+	const { lastFetched } = getState().entities.users;
 
 	const diffInMinutes = moment().diff(moment(lastFetched), "seconds");
-	if (diffInMinutes > 10) return;
+	if (diffInMinutes < 2) return;
+
 	return dispatch(
 		apiCallBegan({
 			url: config.posts.urls.get,

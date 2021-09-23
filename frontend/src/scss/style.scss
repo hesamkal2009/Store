@@ -6,6 +6,10 @@
 
 // If you want to add something do it here
 @import "custom";
-body {
-  background-color: #3f3f3f !important;
+
+footer {
+	bottom: 0;
+	position: absolute;
+	width: 100%;
+	text-align: center;
 }
