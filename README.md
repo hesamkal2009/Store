@@ -1,7 +1,7 @@
 # Store Template
 This is a sample which is implemented by following technologies: 
 
-## On The Backend Side: 
+## On The Backend Side 
 - ASP.NET 5.0 (with .NET Core 5.0)
 - ASP.NET MVC Core
 - ASP.NET WebApi Core with JWT Bearer Authentication
@@ -16,7 +16,7 @@ This is a sample which is implemented by following technologies:
 - Redis for implementing caching behaviour
 
 
-## On The Frontend side:
+## On The Frontend side
 - React 17.0.2 with (Create-React-Template Redux Template)
 - React-Router-DOM 
 - Redux
@@ -37,4 +37,4 @@ This is a sample which is implemented by following technologies:
 - Bootstrap 5.0
 - Font-Awesome
 - Joi-Browser
-- 
+
