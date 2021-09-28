@@ -10,3 +10,4 @@
 -   [ ] Use Redis as Cache
 -   [ ] Use mongodb as fail over database
 -   [ ] Install and Run Serilog properly
+-   [ ] Add IRepository in Application layer and the Implementation of that in Infrastructure layer

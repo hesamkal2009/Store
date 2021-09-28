@@ -8,6 +8,7 @@ This is a sample which is implemented by following technologies:
 - ASP.NET Identity Core
 - Entity Framework Core 5.0
 - .NET Core Native DI
+- CSharpFunctionalExtensions 
 - AutoMapper
 - FluentValidator
 - MediatR
