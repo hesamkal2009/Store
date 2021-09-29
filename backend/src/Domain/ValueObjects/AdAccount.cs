@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Domain.Common;
+using Domain.Exceptions;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.ValueObjects
 {
+    // AdAccount Stands For Microsoft Active Directory Account
     public class AdAccount : ValueObject
     {
 
@@ -13,57 +13,37 @@ namespace Domain.ValueObjects
         {
         }
 
+        public string Name { get; private set; }
+        public string Domain { get; private set; }
+
+        public override string ToString() => $"{Domain}\\{Name}";
+
+        public static implicit operator string(AdAccount account) => account.ToString();
+
+        public static explicit operator AdAccount(string accountString) => For(accountString);
+
         public static AdAccount For(string accountString)
         {
-        //    var account = new AdAccount();
+            var account = new AdAccount();
 
-        //    try
-        //    {
-        //        var index = accountString.IndexOf("\\", StringComparison.Ordinal);
-        //        account.Domain = accountString.Substring(0, index);
-        //        account.Name = accountString.Substring(index + 1);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new AdAccountInvalidException(accountString, ex);
-        //    }
+            try
+            {
+                var index = accountString.IndexOf("\\", StringComparison.Ordinal);
+                account.Domain = accountString.Substring(0, index);
+                account.Name = accountString.Substring(index + 1);
+            }
+            catch (Exception ex)
+            {
 
-        //    return account;
-        //}
+                throw new AdAccountInvalidException(accountString, ex);
+            }
 
-        //public string Domain { get; private set; }
-
-        //public string Name { get; private set; }
-
-        //public static implicit operator string(AdAccount account)
-        //{
-        //    return account.ToString();
-        //}
-
-        //public static explicit operator AdAccount(string accountString)
-        //{
-        //    return For(accountString);
-        //}
-
-        //public override string ToString()
-        //{
-        //    return $"{Domain}\\{Name}";
-        //}
-
-        //protected override IEnumerable<object> GetAtomicValues()
-        //{
-        //    yield return Domain;
-        //    yield return Name;
-        //}
-
-        private AdAccount()
-        {
-
+            return account;
         }
-
-        public static AdAccount For(string accountString)
+        protected override IEnumerable<object> GetAtomicValues()
         {
-
+            yield return Domain;
+            yield return Name;
         }
     }
 }
