@@ -1,16 +1,18 @@
+using Application;
+using Application.Common.Interfaces;
+using FluentValidation.AspNetCore;
+using Infrastructure;
+using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
+using NSwag.Generation.Processors.Security;
 using System.Linq;
-using System.Threading.Tasks;
+using Web.API.Filters;
+using Web.API.Services;
 
 namespace Web.API
 {
@@ -27,10 +29,43 @@ namespace Web.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
-            services.AddSwaggerGen(c =>
+            services.AddApplication();
+            services.AddInfrastructure(Configuration);
+
+            services.AddSingleton<ICurrentUserService, CurrentUserService>();
+
+            services.AddHttpContextAccessor();
+
+            services.AddHealthChecks()
+                .AddDbContextCheck<ApplicationDbContext>();
+
+            services.AddControllers(options => options.Filters.Add(new ApiExceptionFilterAttribute()))
+                .AddFluentValidation();
+
+            // Customise Default API Behaviour
+            services.Configure<ApiBehaviorOptions>(options =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web.API", Version = "v1" });
+                options.SuppressModelStateInvalidFilter = true;
+            });
+
+            // In Production, the React files will be served from this directory
+            services.AddSpaStaticFiles(configuration =>
+            {
+                configuration.RootPath = "ClientApp/dist";
+            });
+
+            services.AddOpenApiDocument(configure =>
+            {
+                configure.Title = "Store API V1.0.0";
+                configure.AddSecurity("JWT", Enumerable.Empty<string>(), new NSwag.OpenApiSecurityScheme
+                {
+                    Type = NSwag.OpenApiSecuritySchemeType.ApiKey,
+                    Name = "Authorization",
+                    In = NSwag.OpenApiSecurityApiKeyLocation.Header,
+                    Description = "Type Into the textbox: Bearer {your JWT token}."
+                });
+
+                configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
             });
         }
 
@@ -40,19 +75,40 @@ namespace Web.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web.API v1"));
             }
+            else
+            {
+                app.UseExceptionHandler("/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
+            }
 
+            app.UseHealthChecks("/health");
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
+
+            if (!env.IsDevelopment())
+            {
+                app.UseSpaStaticFiles();
+            }
+
+            app.UseSwaggerUi3(settings =>
+            {
+                settings.Path = "/api";
+                settings.DocumentPath = "/api/specification.json";
+            });
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseIdentityServer();
             app.UseAuthorization();
-            app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
                 endpoints.MapControllers();
             });
         }

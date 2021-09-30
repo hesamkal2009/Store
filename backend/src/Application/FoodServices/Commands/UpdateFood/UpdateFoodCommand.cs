@@ -38,7 +38,7 @@ namespace Application.FoodServices.Commands.UpdateFood
             entity.Name = request.Name;
             entity.FoodCategoryId = request.foodCategoryId;
             entity.Price = request.Price;
-            entity.FoodInventoryStatusId = request.FoodInventoryStatusId;
+            entity.FoodInventoryStatus = request.FoodInventoryStatusId;
 
             await _context.SaveChangesAsync(cancellationToken);
 

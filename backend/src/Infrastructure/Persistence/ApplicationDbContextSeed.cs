@@ -42,7 +42,7 @@ namespace Infrastructure.Persistence
                     Name = "Koobideh",
                     Price = 100000,
                     FoodCategoryId = foodCategory.Entity.Id,
-                    FoodInventoryStatusId = FoodInventoryStatus.Available,
+                    FoodInventoryStatus = FoodInventoryStatus.Available,
                 });
 
                 await context.SaveChangesAsync();

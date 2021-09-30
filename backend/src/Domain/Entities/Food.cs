@@ -16,7 +16,7 @@ namespace Domain.Entities
 
 
         private FoodInventoryStatus _foodInventoryStatusId;
-        public FoodInventoryStatus FoodInventoryStatusId
+        public FoodInventoryStatus FoodInventoryStatus
         {
             get => _foodInventoryStatusId;
             set
