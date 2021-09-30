@@ -1,10 +1,9 @@
 ﻿namespace Domain.Enums
 {
-    public enum ProductInventoryStatus
+    public enum FoodInventoryStatus
     {
-        InStock,
+        Available,
         RunningLow,
         RanOut,
-        ProudctionDisCountinued
     }
 }

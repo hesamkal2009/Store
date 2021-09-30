@@ -12,7 +12,7 @@ namespace Domain.Common
     {
         protected DomainEvent()
         {
-            DateOccured = DateTimeOffset.UtcNow; 
+            DateOccured = DateTimeOffset.UtcNow;
         }
 
         public DateTimeOffset DateOccured { get; protected set; } = DateTime.UtcNow;

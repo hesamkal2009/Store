@@ -1,18 +1,38 @@
-﻿using System;
+﻿using Domain.Common;
+using Domain.Enums;
+using Domain.Events.FoodEvents;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public record Food
+    public class Food : AuditableEntity, IHasDomainEvent
     {
         public int Id { get; set; }
-        public int ProductCategoryId { get; set; }
-        public FoodCategory foodCategory { get; set; }
+        public int FoodCategoryId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
 
+
+
+        private FoodInventoryStatus _foodInventoryStatusId;
+        public FoodInventoryStatus FoodInventoryStatusId
+        {
+            get => _foodInventoryStatusId;
+            set
+            {
+                if (value == FoodInventoryStatus.RanOut)
+                {
+                    DomainEvents.Add(new FoodRanOutEvent(this));
+                }
+
+                if (value > 0 && _foodInventoryStatusId == FoodInventoryStatus.RanOut)
+                {
+                    DomainEvents.Add(new FoodStockRechargedEvent(this));
+                }
+
+                _foodInventoryStatusId = value;
+            }
+        }
     }
 }

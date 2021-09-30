@@ -6,32 +6,32 @@ using System.Linq;
 
 namespace Application.UnitTests
 {
-    public class CreateProductCommandTests : BaseTest
+    public class CreatFoodCommandTest : BaseTest
     {
-        Product _product;
+        Food _food;
 
         [Fact]
-        public void WhenAdminAddsProudct_ThenProductMustBeReturnedToCreator()
+        public void WhenAdminAddsNewFood_ThenFoodMustBeReturnedToCreator()
         {
-            var list = new List<Product>();
+            var list = new List<Food>();
 
-            list.Add(_product);
+            list.Add(_food);
 
-            list.ShouldBeOfType<List<Product>>();
-            list.FirstOrDefault().ShouldBe(_product);
+            list.ShouldBeOfType<List<Food>>();
+            list.FirstOrDefault().ShouldBe(_food);
 
         }
 
 
         // Local SETUP
-        public CreateProductCommandTests()
+        public CreatFoodCommandTest()
         {
-            _product = Arrange();
+            _food = Arrange();
         }
 
-        private Product Arrange()
+        private Food Arrange()
         {
-            return new Product()
+            return new Food()
             {
                 InsDate = DateTime.Now,
                 StatusId = SubCategoryItems.Enable,
@@ -50,7 +50,7 @@ namespace Application.UnitTests
         public static long Deleted => 3;
     }
 
-    public class Product
+    public class Food
     {
         public long Id { get; set; }
         public DateTime InsDate { get; set; }
