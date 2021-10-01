@@ -41,7 +41,6 @@ namespace Infrastructure
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
             services.AddTransient<IDateTime, DateTimeService>();
-
             services.AddTransient<IIdentityService, IdentityService>();
 
             services.AddAuthentication()
