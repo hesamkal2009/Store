@@ -29,7 +29,9 @@ namespace Web.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-          
+            var serviceProvider = services.BuildServiceProvider();
+            var logger = serviceProvider.GetService<ILogger<ApplicationLogs>>();
+            services.AddSingleton(typeof(ILogger), logger);
 
             services.AddApplication();
             services.AddInfrastructure(Configuration);
@@ -40,9 +42,6 @@ namespace Web.API
 
             services.AddHealthChecks()
                 .AddDbContextCheck<ApplicationDbContext>();
-
-            services.AddControllers(options => options.Filters.Add(new ApiExceptionFilterAttribute()))
-                .AddFluentValidation();
 
             // Customise Default API Behaviour
             services.Configure<ApiBehaviorOptions>(options =>
@@ -55,6 +54,9 @@ namespace Web.API
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddControllers(options => options.Filters.Add(new ApiExceptionFilterAttribute()))
+                .AddFluentValidation();
 
             services.AddOpenApiDocument(configure =>
             {
@@ -95,6 +97,7 @@ namespace Web.API
                 app.UseSpaStaticFiles();
             }
 
+            app.UseOpenApi();
             app.UseSwaggerUi3(settings =>
             {
                 settings.Path = "/api";

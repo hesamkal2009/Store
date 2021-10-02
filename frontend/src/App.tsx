@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap-reboot.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css.map";
-import "../node_modules/bootstrap/dist/js/bootstrap";
+import "bootstrap";
 
 //! font-awesome config
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -41,42 +41,35 @@ function App() {
 					<Route
 						exact
 						path="/login"
-						name="Login Page"
 						render={(props) => <Login {...props} />}
 					/>
 					<Route
 						exact
 						path="/register"
-						name="Register Page"
 						render={(props) => <Register {...props} />}
 					/>
 					<Route
 						exact
 						path="/401"
-						name="Page 401"
 						render={(props) => <Page401 {...props} />}
 					/>
 					<Route
 						exact
 						path="/403"
-						name="Page 403"
 						render={(props) => <Page403 {...props} />}
 					/>
 					<Route
 						exact
 						path="/404"
-						name="Page 404"
 						render={(props) => <Page404 {...props} />}
 					/>
 					<Route
 						exact
 						path="/500"
-						name="Page 500"
 						render={(props) => <Page500 {...props} />}
 					/>
 					<Route
 						path="/"
-						name="root"
 						render={(props) => <TheLayout {...props} />}
 					/>
 				</Switch>

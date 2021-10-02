@@ -1,4 +1,5 @@
 ﻿using Domain.Entities;
+using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -17,6 +18,11 @@ namespace Infrastructure.Persistence.Configurations
             builder.Property(o => o.Price)
                 .HasColumnType(_ColumnTypes.decimalType.Value)
                 .IsRequired();
+
+            builder.Property(o => o.FoodInventoryStatus)
+               .HasConversion(
+                   p => p.Value,
+                   p => FoodInventoryStatus.FromValue(p));
 
         }
     }
