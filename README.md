@@ -23,6 +23,7 @@ This is a sample which is implemented by following technologies:
 - Redux
 - @Reduxjs/ToolKit
 - React-Redux 
+- TypeScript
 - Redux-DevTools-Extension
 - Reselect 
 - Axios
