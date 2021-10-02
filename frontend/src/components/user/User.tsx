@@ -11,7 +11,6 @@ class User extends React.Component {
 			<div>
 				<h1>Users</h1>
 				<ul>
-					{console.log(this.props)}
 					{this.props.state.entities.users.list.map((user) => (
 						<li key={user.id}>{user.email}</li>
 					))}

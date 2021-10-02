@@ -24,6 +24,7 @@ This is a sample which is implemented by following technologies:
 - @Reduxjs/ToolKit
 - React-Redux 
 - TypeScript
+- react-query-swagger
 - Redux-DevTools-Extension
 - Reselect 
 - Axios

@@ -1,5 +1,5 @@
 {
-	"baseURL": "http://jsonplaceholder.typicode.com/",
+	"baseURL": "https://jsonplaceholder.typicode.com/",
 	"posts": {
 		"urls": {
 			"get": "/posts"

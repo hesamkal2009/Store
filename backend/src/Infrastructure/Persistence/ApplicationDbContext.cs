@@ -6,6 +6,7 @@ using Infrastructure.Identity;
 using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Store.Domain.Entities;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -34,6 +35,8 @@ namespace Infrastructure.Persistence
 
         public DbSet<Food> Foods { get; set; }
         public DbSet<FoodCategory> FoodCategories { get; set; }
+        public DbSet<TodoList> TodoLists { get; set; }
+        public DbSet<TodoItem> TodoItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -52,6 +55,7 @@ namespace Infrastructure.Persistence
                         entity.Entity.Created = _dateTime.Now;
                         entity.Entity.CreatedBy = _currentUserService.UserId;
                         break;
+
                     case EntityState.Modified:
                         entity.Entity.LastModified = _dateTime.Now;
                         entity.Entity.LastModifiedBy = _currentUserService.UserId;

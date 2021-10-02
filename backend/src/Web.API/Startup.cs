@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NSwag;
 using NSwag.Generation.Processors.Security;
 using System.Linq;
 using Web.API.Filters;
@@ -29,9 +30,7 @@ namespace Web.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var serviceProvider = services.BuildServiceProvider();
-            var logger = serviceProvider.GetService<ILogger<ApplicationLogs>>();
-            services.AddSingleton(typeof(ILogger), logger);
+            services.AddSingleton(typeof(ILogger), services.BuildServiceProvider().GetService<ILogger<ApplicationLogs>>());
 
             services.AddApplication();
             services.AddInfrastructure(Configuration);
@@ -43,30 +42,27 @@ namespace Web.API
             services.AddHealthChecks()
                 .AddDbContextCheck<ApplicationDbContext>();
 
-            // Customise Default API Behaviour
+            services.AddControllersWithViews(options =>
+                options.Filters.Add(new ApiExceptionFilterAttribute()))
+                    .AddFluentValidation();
+
+            services.AddRazorPages();
+
+            // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options =>
             {
                 options.SuppressModelStateInvalidFilter = true;
             });
 
-            // In Production, the React files will be served from this directory
-            services.AddSpaStaticFiles(configuration =>
+            services.AddSwaggerDocument(configure =>
             {
-                configuration.RootPath = "ClientApp/dist";
-            });
-
-            services.AddControllers(options => options.Filters.Add(new ApiExceptionFilterAttribute()))
-                .AddFluentValidation();
-
-            services.AddOpenApiDocument(configure =>
-            {
-                configure.Title = "Store API V1.0.0";
-                configure.AddSecurity("JWT", Enumerable.Empty<string>(), new NSwag.OpenApiSecurityScheme
+                configure.Title = "Store API";
+                configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
                 {
-                    Type = NSwag.OpenApiSecuritySchemeType.ApiKey,
+                    Type = OpenApiSecuritySchemeType.ApiKey,
                     Name = "Authorization",
-                    In = NSwag.OpenApiSecurityApiKeyLocation.Header,
-                    Description = "Type Into the textbox: Bearer {your JWT token}."
+                    In = OpenApiSecurityApiKeyLocation.Header,
+                    Description = "Type into the textbox: Bearer {your JWT token}."
                 });
 
                 configure.OperationProcessors.Add(new AspNetCoreOperationSecurityScopeProcessor("JWT"));
@@ -79,7 +75,6 @@ namespace Web.API
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Web.API v1"));
             }
             else
             {
@@ -92,17 +87,13 @@ namespace Web.API
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            if (!env.IsDevelopment())
-            {
-                app.UseSpaStaticFiles();
-            }
-
             app.UseOpenApi();
             app.UseSwaggerUi3(settings =>
             {
                 settings.Path = "/api";
                 settings.DocumentPath = "/api/specification.json";
             });
+            app.UseReDoc();
 
             app.UseRouting();
 
@@ -114,7 +105,7 @@ namespace Web.API
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
-                endpoints.MapControllers();
+                endpoints.MapRazorPages();
             });
         }
     }

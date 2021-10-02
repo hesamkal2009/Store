@@ -8,7 +8,7 @@ const logger =
     next(action);
 
     if (actions.logToConsole.type === action.type) {
-      console.log("action.payload :>> ", action.payload);
+      //console.log("action.payload :>> ", action.payload);
     }
   };
 

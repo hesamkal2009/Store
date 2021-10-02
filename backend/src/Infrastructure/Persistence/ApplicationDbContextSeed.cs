@@ -1,9 +1,8 @@
 using Domain.Entities;
 using Domain.Enums;
-using HK.Toolkit.Core;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
-using System;
+using Store.Domain.Entities;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -16,7 +15,7 @@ namespace Infrastructure.Persistence
             var defaultUser = new ApplicationUser
             {
                 UserName = "admin@localhost",
-                Email = "admin@localhost"
+                Email = "admin@localhost.com"
             };
 
             if (userManager.Users.All(u => u.UserName != defaultUser.UserName))
@@ -34,7 +33,6 @@ namespace Infrastructure.Persistence
                     Name = "Irani",
                     Description = "Persian Dishes",
                     IsActive = true
-
                 });
 
                 context.Foods.Add(new Food
@@ -45,7 +43,26 @@ namespace Infrastructure.Persistence
                     FoodInventoryStatus = FoodInventoryStatus.Available,
                 });
 
-                await context.SaveChangesAsync();
+                if (!context.TodoLists.Any())
+                {
+                    context.TodoLists.Add(new TodoList
+                    {
+                        Title = "Shopping",
+                        Items =
+                    {
+                        new TodoItem { Title = "Apples", Done = true },
+                        new TodoItem { Title = "Milk", Done = true },
+                        new TodoItem { Title = "Bread", Done = true },
+                        new TodoItem { Title = "Toilet paper" },
+                        new TodoItem { Title = "Pasta" },
+                        new TodoItem { Title = "Tissues" },
+                        new TodoItem { Title = "Tuna" },
+                        new TodoItem { Title = "Water" }
+                    }
+                    });
+
+                    await context.SaveChangesAsync();
+                }
             }
         }
     }

@@ -27,6 +27,7 @@ namespace Web.API
 
                     if (context.Database.IsSqlServer())
                     {
+                        context.Database.EnsureDeleted();
                         context.Database.Migrate();
                     }
 
@@ -34,13 +35,12 @@ namespace Web.API
 
                     await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager);
                     await ApplicationDbContextSeed.SeedSampleDataAsync(context);
-
                 }
                 catch (Exception ex)
                 {
                     var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
-                    logger.LogError(ex, "An error occured while migrating or seeding the database.");
+                    logger.LogError(ex, "An error occurred while migrating or seeding the database.");
 
                     throw;
                 }
