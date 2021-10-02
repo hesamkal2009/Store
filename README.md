@@ -1,5 +1,5 @@
 # Store Template
-This is a sample which is implemented by following technologies: 
+This is a sample that is implemented by the following technologies: 
 
 ## On The Backend Side 
 - ASP.NET 5.0 (with .NET Core 5.0)
@@ -13,8 +13,8 @@ This is a sample which is implemented by following technologies:
 - FluentValidator
 - MediatR
 - Swagger UI with JWT support
-- MongoDb for storing Blob files
-- Redis for implementing caching behaviour
+- MongoDB for storing Blob files
+- Redis for implementing caching behavior
 
 
 ## On The Frontend side
@@ -30,7 +30,7 @@ This is a sample which is implemented by following technologies:
 - Axios
 - SASS
 - Styled-Components
-- React-App-Pollyfill
+- React-App-Polyfill
 - Query-String
 - Prop-Types
 - Moment
