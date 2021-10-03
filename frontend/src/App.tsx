@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap-reboot.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css.map";
@@ -38,40 +38,17 @@ function App() {
 		<BrowserRouter>
 			<React.Suspense fallback={loading}>
 				<Switch>
-					<Route
-						exact
-						path="/login"
-						render={(props) => <Login {...props} />}
-					/>
+					<Route exact path="/login" render={(props) => <Login {...props} />} />
 					<Route
 						exact
 						path="/register"
 						render={(props) => <Register {...props} />}
 					/>
-					<Route
-						exact
-						path="/401"
-						render={(props) => <Page401 {...props} />}
-					/>
-					<Route
-						exact
-						path="/403"
-						render={(props) => <Page403 {...props} />}
-					/>
-					<Route
-						exact
-						path="/404"
-						render={(props) => <Page404 {...props} />}
-					/>
-					<Route
-						exact
-						path="/500"
-						render={(props) => <Page500 {...props} />}
-					/>
-					<Route
-						path="/"
-						render={(props) => <TheLayout {...props} />}
-					/>
+					<Route exact path="/401" render={(props) => <Page401 {...props} />} />
+					<Route exact path="/403" render={(props) => <Page403 {...props} />} />
+					<Route exact path="/404" render={(props) => <Page404 {...props} />} />
+					<Route exact path="/500" render={(props) => <Page500 {...props} />} />
+					<Route path="/" render={(props) => <TheLayout {...props} />} />
 				</Switch>
 			</React.Suspense>
 		</BrowserRouter>

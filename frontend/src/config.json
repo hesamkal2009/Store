@@ -1,5 +1,5 @@
 {
-	"baseURL": "https://jsonplaceholder.typicode.com/",
+	"baseURL": "https://jsonplaceholder.typicode.com",
 	"posts": {
 		"urls": {
 			"get": "/posts"
@@ -9,5 +9,11 @@
 		"urls": {
 			"get": "/users"
 		}
+	},
+	"auth": {
+		"urls": {
+			"loginUrl": "/auth"
+		},
+		"tokenKeyName": "auth-x-token"
 	}
 }

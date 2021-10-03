@@ -1,8 +1,9 @@
 import React from "react";
+import { RouteComponentProps } from "react-router-dom";
 
-class Home extends React.Component {
+class Home extends React.Component<RouteComponentProps<{}>> {
 	render() {
-		return <h1>This is HoOoOooOOoMe</h1>;
+		return <h1>This is Home</h1>;
 	}
 }
 

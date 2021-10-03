@@ -1,9 +1,19 @@
-import { callForUsers, getUsersCount } from "../../app/users";
+import { callForUsers, getUsers } from "../../app/users";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
+import { useAppDispatch } from "../../app/_hooks";
 import User from "./User";
 
-function mapDispatchToProps(dispatch) {
+interface Dispatch {
+	dispatch(): () => typeof useAppDispatch;
+}
+
+interface StateRoot{
+	state,
+	ownProps
+}
+
+function mapDispatchToProps(dispatch: Dispatch) {
 	return {
 		callForUsers: () => {
 			dispatch(callForUsers());
@@ -13,8 +23,8 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state, ownProps) {
 	return {
-		getUsersCount: getUsersCount(),
 		state,
+		ownProps,
 	};
 }
 

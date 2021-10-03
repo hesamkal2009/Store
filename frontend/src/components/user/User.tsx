@@ -1,6 +1,7 @@
 import React from "react";
+import { RouteComponentProps } from "react-router-dom";
 
-class User extends React.Component {
+class User extends React.Component<RouteComponentProps<{}>> {
 	constructor(props) {
 		super(props);
 		this.props.callForUsers();

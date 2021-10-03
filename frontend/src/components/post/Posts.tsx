@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 
-import { useDispatch, useSelector } from "react-redux";
+//import { useDispatch, useSelector } from "react-redux";
+import { useAppDispatch, useAppSelector } from "../../app/_hooks";
+
 import {
 	getPosts,
 	selectPostsCount,
@@ -9,13 +11,13 @@ import {
 } from "../../app/posts";
 
 export default function Posts(props) {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	useEffect(() => {
 		dispatch(getPosts());
 	}, [dispatch]);
 
-	const posts = useSelector(selectPosts);
-	const postCount = useSelector(selectPostsCount);
+	const posts = useAppSelector(selectPosts);
+	const postCount = useAppSelector(selectPostsCount);
 
 	const [userPosts, setUserPosts] = useState(posts); // THIS IS A REAL State Object which can be changed by declared function
 	const [userId, setUserId] = useState(0); // THIS IS A REAL State Object which can be changed by declared function
@@ -24,7 +26,10 @@ export default function Posts(props) {
 	}, [posts]);
 
 	const handleInputChange = (userId) => {
-		let filteredPosts = userId > 0 ? posts.filter((post) => post.userId === Number(userId)) : posts;
+		let filteredPosts =
+			userId > 0
+				? posts.filter((post) => post.userId === Number(userId))
+				: posts;
 		setUserPosts(filteredPosts);
 		setUserId(userId);
 	};
@@ -45,7 +50,9 @@ export default function Posts(props) {
 					onChange={(e) => handleInputChange(e.target.value)}
 				/>
 			</h1>
-			<h2>{userPosts.length} - Posts Are Written By User Id - {userId}</h2>
+			<h2>
+				{userPosts.length} - Posts Are Written By User Id - {userId}
+			</h2>
 			<ul>
 				{userPosts.map((post) => (
 					<li key={post.id}>{post.title}</li>

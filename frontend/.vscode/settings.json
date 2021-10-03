@@ -1,14 +1,31 @@
 {
-    "workbench.colorCustomizations": {
-        "activityBar.background": "#3E2444",
-        "titleBar.activeBackground": "#56325F",
-        "titleBar.activeForeground": "#FBF9FC"
-    },
-    "cSpell.words": [
-        "fontawesome",
-        "fortawesome",
-        "immer",
-        "middlewares",
-        "reduxjs"
-    ]
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#3E2444",
+		"titleBar.activeBackground": "#56325F",
+		"titleBar.activeForeground": "#FBF9FC"
+	},
+	"cSpell.words": [
+		"fontawesome",
+		"fortawesome",
+		"immer",
+		"middlewares",
+		"precached",
+		"reduxjs",
+		"toastify"
+	],
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"**/.classpath": true,
+		"**/.project": true,
+		"**/.settings": true,
+		"**/.factorypath": true,
+		"[!s]*/**": true,
+		"s[!r]*/**": true,
+		"sr[!c]*/**": true
+	}
 }

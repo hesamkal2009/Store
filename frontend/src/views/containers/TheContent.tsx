@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Redirect, Route, RouteComponentProps, Switch } from "react-router-dom";
 
 //! routes config
 import routes from "../../routes/routes";
@@ -12,7 +12,7 @@ const loading = (
 
 // const User = React.lazy(() => import("../components/user/User"));
 
-class TheContent extends React.Component {
+class TheContent extends React.Component<RouteComponentProps<{}>> {
 	render() {
 		return (
 			<main className="container-fluid">
@@ -24,7 +24,6 @@ class TheContent extends React.Component {
 									key={idx}
 									path={route.path}
 									exact={route.exact}
-									name={route.name}
 									render={(props) => (
 										<route.connector>
 											<route.component {...props} />
@@ -37,7 +36,6 @@ class TheContent extends React.Component {
 										key={idx}
 										path={route.path}
 										exact={route.exact}
-										name={route.name}
 										render={(props) => <route.component {...props} />}
 									/>
 								)

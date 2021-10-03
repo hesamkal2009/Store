@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, RouteComponentProps } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-class TheHeader extends React.Component {
+class TheHeader extends React.Component<RouteComponentProps<{}>> {
 	render() {
 		return (
 			<React.Fragment>
@@ -52,7 +52,6 @@ class TheHeader extends React.Component {
 									<li className="nav-item dropdown">
 										<div
 											className="nav-link dropdown-toggle"
-											to="#"
 											id="navbarDropdown"
 											role="button"
 											data-bs-toggle="dropdown"
@@ -82,7 +81,6 @@ class TheHeader extends React.Component {
 										<NavLink
 											className="nav-link disabled"
 											to="/404"
-											tabIndex="-1"
 											aria-disabled="true"
 										>
 											404

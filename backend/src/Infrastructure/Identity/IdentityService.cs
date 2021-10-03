@@ -46,13 +46,13 @@ namespace Infrastructure.Identity
             }
 
             return Result.Success();
-        }
 
-        public async Task<Result> DeleteUserAsync(ApplicationUser user)
-        {
-            var result = await _userManager.DeleteAsync(user);
+            async Task<Result> DeleteUserAsync(ApplicationUser user)
+            {
+                var result = await _userManager.DeleteAsync(user);
 
-            return result.ToApplicationResult();
+                return result.ToApplicationResult();
+            }
         }
     }
 }

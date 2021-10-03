@@ -38,10 +38,8 @@ export const callForUsers = () => (dispatch, getState) => {
 
 //#region //* Selectors
 
-export const getUsersCount = () =>
-	createSelector((state) => state.entities.users.list.length);
 export const getUsers = () =>
-	createSelector((state) => state.entities.users.list);
+	createSelector();
 
 //#endregion
 

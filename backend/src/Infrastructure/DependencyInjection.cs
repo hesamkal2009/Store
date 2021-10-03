@@ -3,9 +3,14 @@ using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Infrastructure
 {
@@ -43,8 +48,46 @@ namespace Infrastructure
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
 
-            services.AddAuthentication()
-                .AddIdentityServerJwt();
+            var jwtAuthKey = Encoding.ASCII.GetBytes(configuration.GetValue<string>("JwtAuthToken"));
+
+            services.AddAuthentication(configureOptions =>
+            {
+                configureOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                configureOptions.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(configureOptions =>
+                {
+                    configureOptions.Events = new JwtBearerEvents
+                    {
+                        OnTokenValidated = context =>
+                        {
+                            // TODO
+                            return Task.CompletedTask;
+                        },
+                        OnAuthenticationFailed = context =>
+                        {
+                            throw new Exception("I'm Yielling from DependencyInjection in Infra layer, smth is wrong in jwt");
+                        },
+                        OnMessageReceived = context =>
+                        {
+                            Console.WriteLine("I'm Yielling from DependencyInjection in Infra layer, Message Recieved!");
+                            return Task.CompletedTask;
+                        }
+                    };
+
+                    configureOptions.RequireHttpsMetadata = false;
+                    configureOptions.SaveToken = true;
+                    configureOptions.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(jwtAuthKey),
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ClockSkew = TimeSpan.Zero,
+                        RequireExpirationTime = true,
+                    };
+                })
+                    .AddIdentityServerJwt();
 
             return services;
         }
