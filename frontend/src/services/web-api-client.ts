@@ -517,6 +517,74 @@ export class TodoListsClient implements ITodoListsClient {
     }
 }
 
+export interface IUserManagerClient {
+    login(email: string, password: string | null | undefined): Promise<Result>;
+}
+
+export class UserManagerClient implements IUserManagerClient {
+    private instance: AxiosInstance;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+        this.instance = instance ? instance : axios.create();
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    login(email: string, password: string | null | undefined , cancelToken?: CancelToken | undefined): Promise<Result> {
+        let url_ = this.baseUrl + "/api/UserManager?";
+        if (password !== undefined && password !== null)
+            url_ += "password=" + encodeURIComponent("" + password) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(email);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processLogin(_response);
+        });
+    }
+
+    protected processLogin(response: AxiosResponse): Promise<Result> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return result200;
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Result>(<any>null);
+    }
+}
+
 export interface IFoodCategoryClient {
     getFoodCategorysWithPagination(pageNumber: number | undefined, pageSize: number | undefined): Promise<PaginatedListOfFoodCategoryDto>;
     create(command: CreateFoodCategoryCommand): Promise<number>;
@@ -1039,6 +1107,11 @@ export interface CreateTodoListCommand {
 export interface UpdateTodoListCommand {
     id: number;
     title?: string | undefined;
+}
+
+export interface Result {
+    succeeded: boolean;
+    errors?: string[] | undefined;
 }
 
 export interface PaginatedListOfFoodCategoryDto {

@@ -364,6 +364,50 @@
         ]
       }
     },
+    "/api/UserManager": {
+      "post": {
+        "tags": [
+          "UserManager"
+        ],
+        "operationId": "UserManager_Login",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "email",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "x-nullable": false
+          },
+          {
+            "type": "string",
+            "name": "password",
+            "in": "query",
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
     "/api/FoodCategory": {
       "get": {
         "tags": [
@@ -863,6 +907,23 @@
         },
         "title": {
           "type": "string"
+        }
+      }
+    },
+    "Result": {
+      "type": "object",
+      "required": [
+        "succeeded"
+      ],
+      "properties": {
+        "succeeded": {
+          "type": "boolean"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
         }
       }
     },

@@ -9,7 +9,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Infrastructure
@@ -48,8 +47,6 @@ namespace Infrastructure
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
 
-            var jwtAuthKey = Encoding.ASCII.GetBytes(configuration.GetValue<string>("JwtAuthToken"));
-
             services.AddAuthentication(configureOptions =>
             {
                 configureOptions.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -66,11 +63,11 @@ namespace Infrastructure
                         },
                         OnAuthenticationFailed = context =>
                         {
-                            throw new Exception("I'm Yielling from DependencyInjection in Infra layer, smth is wrong in jwt");
+                            throw new Exception("I'm yielling from DependencyInjection in Infra layer, smth is wrong in jwt");
                         },
                         OnMessageReceived = context =>
                         {
-                            Console.WriteLine("I'm Yielling from DependencyInjection in Infra layer, Message Recieved!");
+                            Console.WriteLine("I'm yielling from DependencyInjection in Infra layer, Message Recieved!");
                             return Task.CompletedTask;
                         }
                     };
@@ -80,7 +77,7 @@ namespace Infrastructure
                     configureOptions.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(jwtAuthKey),
+                        IssuerSigningKey = new SymmetricSecurityKey(new AuthenticationManager(configuration).jwtKey()),
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ClockSkew = TimeSpan.Zero,
