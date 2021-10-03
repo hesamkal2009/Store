@@ -382,19 +382,13 @@
         ],
         "parameters": [
           {
-            "name": "email",
+            "name": "command",
             "in": "body",
             "required": true,
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/LoginCommand"
             },
             "x-nullable": false
-          },
-          {
-            "type": "string",
-            "name": "password",
-            "in": "query",
-            "x-nullable": true
           }
         ],
         "responses": {
@@ -402,7 +396,7 @@
             "x-nullable": false,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/Result"
+              "type": "string"
             }
           }
         }
@@ -910,20 +904,14 @@
         }
       }
     },
-    "Result": {
+    "LoginCommand": {
       "type": "object",
-      "required": [
-        "succeeded"
-      ],
       "properties": {
-        "succeeded": {
-          "type": "boolean"
+        "email": {
+          "type": "string"
         },
-        "errors": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
+        "password": {
+          "type": "string"
         }
       }
     },

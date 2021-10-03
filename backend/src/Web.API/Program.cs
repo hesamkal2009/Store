@@ -27,7 +27,6 @@ namespace Web.API
 
                     if (context.Database.IsSqlServer())
                     {
-                        context.Database.EnsureDeleted();
                         context.Database.EnsureCreated();
                         context.Database.Migrate();
                     }

@@ -1,6 +1,6 @@
 ﻿using Application.Common.Interfaces;
+using Ardalis.GuardClauses;
 using MediatR;
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,16 +14,22 @@ namespace Application.UserManager.Commands.Login
 
     public class LoginCommandHandler : IRequestHandler<LoginCommand, string>
     {
-        public LoginCommandHandler(IIdentityService identityService)
+        public LoginCommandHandler(IAuthenticationManager authenticationManager, IIdentityService identityService)
         {
-            this._identityService = identityService;
+            _authenticationManager = authenticationManager;
+            _identityService = identityService;
         }
 
+        private readonly IAuthenticationManager _authenticationManager;
         private readonly IIdentityService _identityService;
 
         public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            var userExists = await _identityService.FindUserAsync(request.Email);
+
+            Guard.Against.NullOrEmpty(userExists, nameof(userExists), "User with specified email doesn't exists.");
+
+            return _authenticationManager.GenerateToken();
         }
     }
 }

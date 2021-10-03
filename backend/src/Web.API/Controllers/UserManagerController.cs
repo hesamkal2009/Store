@@ -1,18 +1,20 @@
-﻿using Application.Common.Models;
+﻿using Application.UserManager.Commands.Login;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Web.API.Controllers;
 
 namespace Store.Web.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [AllowAnonymous]
+    [Route("api/[controller]")]
     public class UserManagerController : ApiController
     {
         [HttpPost]
-        public async Task<ActionResult<Result>> Login([FromBody] string email, string password)
+        public async Task<ActionResult<string>> Login([FromBody] LoginCommand command)
         {
-            return Result.Success();
+            return await Mediator.Send(command);
         }
     }
 }

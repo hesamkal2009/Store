@@ -23,6 +23,13 @@ namespace Infrastructure.Identity
             return user.UserName;
         }
 
+        public async Task<string> FindUserAsync(string email)
+        {
+            var user = await _userManager.Users.FirstAsync(u => u.Email == email);
+
+            return user.UserName;
+        }
+
         public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)
         {
             var user = new ApplicationUser

@@ -44,8 +44,10 @@ namespace Infrastructure
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
+            //! Custom Classes Mappings
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
+            services.AddTransient<IAuthenticationManager, AuthenticationManager>();
 
             services.AddAuthentication(configureOptions =>
             {
@@ -77,7 +79,7 @@ namespace Infrastructure
                     configureOptions.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(new AuthenticationManager(configuration).jwtKey()),
+                        IssuerSigningKey = new SymmetricSecurityKey(new AuthenticationManager(configuration).GetSecretServiceApiKey()),
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ClockSkew = TimeSpan.Zero,

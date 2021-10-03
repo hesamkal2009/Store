@@ -518,7 +518,7 @@ export class TodoListsClient implements ITodoListsClient {
 }
 
 export interface IUserManagerClient {
-    login(email: string, password: string | null | undefined): Promise<Result>;
+    login(command: LoginCommand): Promise<string>;
 }
 
 export class UserManagerClient implements IUserManagerClient {
@@ -531,13 +531,11 @@ export class UserManagerClient implements IUserManagerClient {
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
     }
 
-    login(email: string, password: string | null | undefined , cancelToken?: CancelToken | undefined): Promise<Result> {
-        let url_ = this.baseUrl + "/api/UserManager?";
-        if (password !== undefined && password !== null)
-            url_ += "password=" + encodeURIComponent("" + password) + "&";
+    login(command: LoginCommand , cancelToken?: CancelToken | undefined): Promise<string> {
+        let url_ = this.baseUrl + "/api/UserManager";
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(email);
+        const content_ = JSON.stringify(command);
 
         let options_ = <AxiosRequestConfig>{
             data: content_,
@@ -561,7 +559,7 @@ export class UserManagerClient implements IUserManagerClient {
         });
     }
 
-    protected processLogin(response: AxiosResponse): Promise<Result> {
+    protected processLogin(response: AxiosResponse): Promise<string> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -581,7 +579,7 @@ export class UserManagerClient implements IUserManagerClient {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<Result>(<any>null);
+        return Promise.resolve<string>(<any>null);
     }
 }
 
@@ -1109,9 +1107,9 @@ export interface UpdateTodoListCommand {
     title?: string | undefined;
 }
 
-export interface Result {
-    succeeded: boolean;
-    errors?: string[] | undefined;
+export interface LoginCommand {
+    email?: string | undefined;
+    password?: string | undefined;
 }
 
 export interface PaginatedListOfFoodCategoryDto {
