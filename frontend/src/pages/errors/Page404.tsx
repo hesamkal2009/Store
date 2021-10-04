@@ -1,12 +1,7 @@
 import React from "react";
-import {
-	unAuthorized,
-	forbidden,
-	notFound,
-	internalServerError,
-} from "../../library/constants/errorTypes";
+import { RouteComponentProps } from "react-router";
 
-const ErrorPage = (props) => {
+const ErrorPage = (props: RouteComponentProps) => {
 	return (
 		<React.Fragment>
 			<h1>Page 404</h1>

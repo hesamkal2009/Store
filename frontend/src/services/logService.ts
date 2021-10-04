@@ -1,4 +1,4 @@
-function log(error) {
+function log(error: string | undefined) {
 	console.error(error);
 }
 

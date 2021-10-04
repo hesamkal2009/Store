@@ -2,7 +2,7 @@ import axios from "axios";
 import { logger } from "./logService";
 import { toast } from "react-toastify";
 
-axios.interceptors.response.use(null, (error) => {
+axios.interceptors.response.use(undefined, (error) => {
 	const expectedError =
 		error.response &&
 		error.response.status >= 400 &&
@@ -16,9 +16,20 @@ axios.interceptors.response.use(null, (error) => {
 	return Promise.reject(error);
 });
 
-function setJwt(jwt) {
+var jwtToken: string | null = "";
+function setJwt(jwt: string | null) {
 	axios.defaults.headers.common["x-auth-token"] = jwt;
+	jwtToken = jwt;
 }
+
+const agentInstance = axios.create({
+	headers: {
+		common: {
+			Authorization: `x-auth-token ${jwtToken}`,
+		},
+	},
+});
+export default agentInstance;
 
 export const httpService = {
 	get: axios.get,

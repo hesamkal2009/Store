@@ -69,11 +69,6 @@ class TheHeader extends React.Component<RouteComponentProps<{}>> {
 												</NavLink>
 											</li>
 											<div className="dropdown-divider"></div>
-											<li className="dropdown-item">
-												<NavLink className="nav-link" to="/users">
-													Users
-												</NavLink>
-											</li>
 											<li></li>
 										</ul>
 									</li>

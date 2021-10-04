@@ -19,18 +19,7 @@ class TheContent extends React.Component<RouteComponentProps<{}>> {
 				<Suspense fallback={loading}>
 					<Switch>
 						{routes.map((route, idx) => {
-							return route.component && route.connector ? (
-								<Route
-									key={idx}
-									path={route.path}
-									exact={route.exact}
-									render={(props) => (
-										<route.connector>
-											<route.component {...props} />
-										</route.connector>
-									)}
-								/> //! You just need to wrap the child component ITSELF, NOT the route that is assigned to it.
-							) : (
+							return (
 								route.component && (
 									<Route
 										key={idx}
