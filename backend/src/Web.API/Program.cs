@@ -1,3 +1,4 @@
+using dotenv.net;
 using Infrastructure.Identity;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Hosting;
@@ -15,6 +16,8 @@ namespace Web.API
     {
         public async static Task Main(string[] args)
         {
+            DotEnv.Load();
+
             var host = CreateHostBuilder(args).Build();
 
             using (var scope = host.Services.CreateScope())

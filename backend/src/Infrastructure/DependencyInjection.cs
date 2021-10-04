@@ -29,7 +29,7 @@ namespace Infrastructure
                 services.AddDbContext<ApplicationDbContext>(options =>
                 {
                     options.UseSqlServer(
-                        configuration.GetConnectionString("DefaultConnection"),
+                        Environment.GetEnvironmentVariable("DEFAULT_CONNECTION"),
                         b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
                 });
             }
@@ -79,7 +79,7 @@ namespace Infrastructure
                     configureOptions.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(new AuthenticationManager(configuration).GetSecretServiceApiKey()),
+                        IssuerSigningKey = new SymmetricSecurityKey(new AuthenticationManager().GetJwtTokenKey()),
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ClockSkew = TimeSpan.Zero,

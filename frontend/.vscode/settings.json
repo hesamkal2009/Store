@@ -23,9 +23,6 @@
 		"**/.classpath": true,
 		"**/.project": true,
 		"**/.settings": true,
-		"**/.factorypath": true,
-		"[!s]*/**": true,
-		"s[!r]*/**": true,
-		"sr[!c]*/**": true
+		"**/.factorypath": true
 	}
 }

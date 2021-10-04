@@ -1,0 +1,26 @@
+{
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#06323D",
+		"titleBar.activeBackground": "#084655",
+		"titleBar.activeForeground": "#F1FBFE"
+	},
+	"sqltools.connections": [
+		{
+			"mssqlOptions": {
+				"appName": "SQLTools",
+				"useUTC": true,
+				"encrypt": true
+			},
+			"previewLimit": 50,
+			"server": "127.0.0.1",
+			"port": 1433,
+			"driver": "MSSQL",
+			"name": "sql2019OnDocker",
+			"group": "Docker",
+			"database": "master",
+			"username": "sa",
+			"password": "1Password"
+		}
+	],
+	"cSpell.words": ["Hsts"]
+}

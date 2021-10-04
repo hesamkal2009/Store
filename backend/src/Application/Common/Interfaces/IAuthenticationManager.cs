@@ -2,7 +2,7 @@
 {
     public interface IAuthenticationManager
     {
-        public byte[] GetSecretServiceApiKey();
+        public byte[] GetJwtTokenKey();
 
         public string GenerateToken();
     }

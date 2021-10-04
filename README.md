@@ -12,6 +12,7 @@ This is a sample that is implemented by the following technologies:
 - AutoMapper
 - FluentValidator
 - MediatR
+- Dotnet-Env
 - Swagger UI with JWT support
 - MongoDB for storing Blob files
 - Redis for implementing caching behavior

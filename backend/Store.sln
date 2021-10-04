@@ -20,12 +20,13 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{2E65ED00-55F7-460D-B0FB-9B036847B341}"
 	ProjectSection(SolutionItems) = preProject
 		docs\GaurdClausesUsage.md = docs\GaurdClausesUsage.md
+		docs\RunnigSQLServerOnLinuxDocker.md = docs\RunnigSQLServerOnLinuxDocker.md
 		docs\todo.list.md = docs\todo.list.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Web.API", "src\Web.API\Web.API.csproj", "{83C1B6EB-0C9F-4B45-AB40-9C2807C45CEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.IntegrationTests", "tests\Application.IntegrationTests\Application.IntegrationTests.csproj", "{F8B663DE-E7A6-4E85-B058-208D699F69E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.IntegrationTests", "tests\Application.IntegrationTests\Application.IntegrationTests.csproj", "{F8B663DE-E7A6-4E85-B058-208D699F69E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,5 +1,4 @@
 ﻿using Application.Common.Interfaces;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,23 +9,16 @@ namespace Infrastructure.Identity
 {
     public class AuthenticationManager : IAuthenticationManager
     {
-        public AuthenticationManager(IConfiguration configuration)
+        public byte[] GetJwtTokenKey()
         {
-            _configuration = configuration;
-        }
-
-        private readonly IConfiguration _configuration;
-
-        public byte[] GetSecretServiceApiKey()
-        {
-            string plainServiceApiKey = _configuration.GetValue<string>("ServiceApiKey");
+            string plainServiceApiKey = Environment.GetEnvironmentVariable("JWT_TOKEN_KEY");
             return Encoding.ASCII.GetBytes(plainServiceApiKey);
         }
 
         public string GenerateToken()
         {
             var tokenHandler = new JwtSecurityTokenHandler();
-            var serviceApiKey = GetSecretServiceApiKey();
+            var serviceApiKey = GetJwtTokenKey();
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new Claim[]

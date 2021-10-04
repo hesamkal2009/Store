@@ -1,23 +1,27 @@
 import jwtDecode from "jwt-decode";
-import http from "./httpService";
+import { httpService } from "./httpService";
 import { baseURL, auth } from "../config.json";
+import { UserManagerClient } from "../services/web-api-client";
 
-const apiEndpoint = baseURL + auth.urls.loginUrl;
+httpService.setJwt(getJwt());
 
-http.setJwt(getJwt());
+const command = {
+	email: String,
+	password: String,
+};
+
+var userManagerClient = new UserManagerClient(baseURL)();
 
 export async function login(email, password) {
-	const { data: jwt } = await http.post(apiEndpoint, { email, password });
-	console.log("JWT Answer IS  :>> ", jwt);
-	//localStorage.setItem(auth.tokenKeyName, jwt);
+	const { data: jwt } = await userManagerClient.login(
+		command.email,
+		command.password
+	);
+	storeJwtToken(auth.tokenKeyName, jwt);
 }
 
-export function storeJwtToken(jwt) {
-	localStorage.setItem(auth.tokenKeyName, jwt);
-}
-
-export function removeJwtToken() {
-	localStorage.removeItem(auth.tokenKeyName);
+export function logout() {
+	removeJwtToken();
 }
 
 export function getCurrentUser() {
@@ -35,10 +39,17 @@ export function getJwt() {
 	return localStorage.getItem(auth.tokenKeyName);
 }
 
+function storeJwtToken(jwt) {
+	localStorage.setItem(auth.tokenKeyName, jwt);
+}
+
+function removeJwtToken() {
+	localStorage.removeItem(auth.tokenKeyName);
+}
+
 export const authService = {
 	login,
-	storeJwtToken,
-	removeJwtToken,
+	logout,
 	getCurrentUser,
 	getJwt,
 };
