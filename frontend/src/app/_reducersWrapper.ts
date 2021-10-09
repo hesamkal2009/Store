@@ -1,6 +1,8 @@
 import { combineReducers } from "redux";
-import posts from "./posts";
+import foodCategory from "./foodCategorySlice";
+import food from "./foodSlice";
 
 export default combineReducers({
-	posts,
+	food,
+	foodCategory,
 });

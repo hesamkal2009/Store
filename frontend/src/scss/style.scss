@@ -8,15 +8,29 @@
 @import "custom";
 
 body {
+	background: #005aa7; /* fallback for old browsers */
+	background: -webkit-linear-gradient(
+		to right,
+		#fffde4,
+		#005aa7
+	); /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(
+		to right,
+		#fffde4,
+		#005aa7
+	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 .clickable {
 	cursor: pointer;
 }
 
+.content-panel {
+	min-height: 84.8vh;
+}
+
 footer {
-	bottom: 0;
-	position: absolute;
-	width: 100%;
+	position: relative;
 	text-align: center;
+	top: 100%;
 }

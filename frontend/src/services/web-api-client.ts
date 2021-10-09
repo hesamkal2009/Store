@@ -518,7 +518,8 @@ export class TodoListsClient implements ITodoListsClient {
 }
 
 export interface IUserManagerClient {
-    login(command: LoginCommand): Promise<string>;
+    login(command: LoginCommand): Promise<LoginViewModel>;
+    restier(command: LoginCommand): Promise<LoginViewModel>;
 }
 
 export class UserManagerClient implements IUserManagerClient {
@@ -531,8 +532,8 @@ export class UserManagerClient implements IUserManagerClient {
         this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
     }
 
-    login(command: LoginCommand , cancelToken?: CancelToken | undefined): Promise<string> {
-        let url_ = this.baseUrl + "/api/UserManager";
+    login(command: LoginCommand , cancelToken?: CancelToken | undefined): Promise<LoginViewModel> {
+        let url_ = this.baseUrl + "/api/UserManager/Login";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(command);
@@ -559,7 +560,7 @@ export class UserManagerClient implements IUserManagerClient {
         });
     }
 
-    protected processLogin(response: AxiosResponse): Promise<string> {
+    protected processLogin(response: AxiosResponse): Promise<LoginViewModel> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -579,7 +580,58 @@ export class UserManagerClient implements IUserManagerClient {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<string>(<any>null);
+        return Promise.resolve<LoginViewModel>(<any>null);
+    }
+
+    restier(command: LoginCommand , cancelToken?: CancelToken | undefined): Promise<LoginViewModel> {
+        let url_ = this.baseUrl + "/api/UserManager/Register";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processRestier(_response);
+        });
+    }
+
+    protected processRestier(response: AxiosResponse): Promise<LoginViewModel> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return result200;
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<LoginViewModel>(<any>null);
     }
 }
 
@@ -1105,6 +1157,10 @@ export interface CreateTodoListCommand {
 export interface UpdateTodoListCommand {
     id: number;
     title?: string | undefined;
+}
+
+export interface LoginViewModel {
+    identityToken?: string | undefined;
 }
 
 export interface LoginCommand {

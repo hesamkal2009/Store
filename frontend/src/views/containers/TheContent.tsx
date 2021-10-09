@@ -10,12 +10,10 @@ const loading = (
 	</div>
 );
 
-// const User = React.lazy(() => import("../components/user/User"));
-
 class TheContent extends React.Component<RouteComponentProps<{}>> {
 	render() {
 		return (
-			<main className="container-fluid">
+			<main className="container-fluid content-panel">
 				<Suspense fallback={loading}>
 					<Switch>
 						{routes.map((route, idx) => {
@@ -25,7 +23,9 @@ class TheContent extends React.Component<RouteComponentProps<{}>> {
 										key={idx}
 										path={route.path}
 										exact={route.exact}
-										render={(props) => <route.component {...props} />}
+										render={(props) => (
+											<route.component {...props} />
+										)}
 									/>
 								)
 							);

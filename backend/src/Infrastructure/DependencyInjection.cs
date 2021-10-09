@@ -4,6 +4,7 @@ using Infrastructure.Persistence;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -38,7 +39,30 @@ namespace Infrastructure
 
             services.AddScoped<IDomainEventService, DomainEventService>();
 
-            services.AddDefaultIdentity<ApplicationUser>()
+            services.AddDefaultIdentity<ApplicationUser>(options =>
+            {
+                // Sign in settings
+                options.SignIn.RequireConfirmedPhoneNumber = true;
+                options.SignIn.RequireConfirmedEmail = true;
+
+                // Password settings
+                options.Password.RequireDigit = true;
+                options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequireLowercase = false;
+                options.Password.RequiredUniqueChars = 6;
+
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings
+                options.User.RequireUniqueEmail = true;
+            })
+                .AddDefaultTokenProviders()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentityServer()
@@ -47,7 +71,7 @@ namespace Infrastructure
             //! Custom Classes Mappings
             services.AddTransient<IDateTime, DateTimeService>();
             services.AddTransient<IIdentityService, IdentityService>();
-            services.AddTransient<IAuthenticationManager, AuthenticationManager>();
+            services.AddTransient<ITokenKeyProvider, TokenKeyProvider>();
 
             services.AddAuthentication(configureOptions =>
             {
@@ -79,7 +103,7 @@ namespace Infrastructure
                     configureOptions.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(new AuthenticationManager().GetJwtTokenKey()),
+                        IssuerSigningKey = new SymmetricSecurityKey(new TokenKeyProvider().GetJwtTokenKey()),
                         ValidateIssuer = false,
                         ValidateAudience = false,
                         ClockSkew = TimeSpan.Zero,

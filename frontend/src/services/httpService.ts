@@ -28,6 +28,7 @@ const agentInstance = axios.create({
 			Authorization: `x-auth-token ${jwtToken}`,
 		},
 	},
+	transformResponse: [],
 });
 export default agentInstance;
 

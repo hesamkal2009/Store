@@ -1,9 +1,7 @@
 ﻿namespace Application.Common.Interfaces
 {
-    public interface IAuthenticationManager
+    public interface ITokenKeyProvider
     {
         public byte[] GetJwtTokenKey();
-
-        public string GenerateToken();
     }
 }

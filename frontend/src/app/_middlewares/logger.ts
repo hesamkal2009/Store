@@ -1,12 +1,11 @@
 import * as actions from "../_actions/logger";
 
 const logger =
-	({ dispatch, getState }) =>
-	(next) =>
-	(action) => {
+	(params: string) => (store: any) => (next: any) => (action: any) => {
 		next(action);
 
 		if (actions.logToConsole.type === action.type) {
+			console.log("action.payload :>> ", action.payload);
 		}
 	};
 

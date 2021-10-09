@@ -1,13 +1,14 @@
 {
+	"serviceUrl": "https://localhost:5001",
 	"baseURL": "https://localhost:5001/api",
-	"posts": {
+	"food": {
 		"urls": {
-			"get": "/posts"
+			"get": "/food"
 		}
 	},
-	"users": {
+	"foodCategory": {
 		"urls": {
-			"get": "/users"
+			"get": "/foodCategory"
 		}
 	},
 	"auth": {

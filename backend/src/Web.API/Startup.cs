@@ -39,7 +39,7 @@ namespace Web.API
 
             services.AddHttpContextAccessor();
 
-            services.AddCors(o => o.AddPolicy("FreePolicy", builder =>
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder =>
             {
                 builder.AllowAnyOrigin()
                        .AllowAnyMethod()
@@ -114,7 +114,7 @@ namespace Web.API
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action}/{id?}");
                 endpoints.MapRazorPages();
             });
 

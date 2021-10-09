@@ -1,11 +1,11 @@
 import jwtDecode from "jwt-decode";
 import agentInstance, { httpService } from "./httpService";
-import { baseURL, auth } from "../config.json";
+import { serviceUrl, auth } from "../config.json";
 import { UserManagerClient, LoginCommand } from "./web-api-client";
 
 httpService.setJwt(getJwt());
 
-const userManagerClient = new UserManagerClient(baseURL, agentInstance);
+const userManagerClient = new UserManagerClient(serviceUrl, agentInstance);
 
 function storeJwtToken(jwt: string) {
 	localStorage.setItem(auth.tokenKeyName, jwt);
@@ -21,19 +21,36 @@ export async function login(email: string, password: string) {
 		password: password,
 	};
 
-	const jwt = await userManagerClient.login(command);
-	storeJwtToken(jwt);
+	const result = await userManagerClient.login(command);
+	console.log(result);
+	if (result.identityToken !== undefined) {
+		storeJwtToken(result.identityToken);
+		window.location.href = "/";
+	}
 }
 
 export function logout() {
 	removeJwtToken();
+	window.location.reload();
 }
 
 export function getJwt() {
 	return localStorage.getItem(auth.tokenKeyName);
 }
 
-export function getCurrentUser() {
+export interface jwtData {
+	nameId: string;
+	email: string;
+	UserName: string;
+	PhoneNumberConfirmed: boolean;
+	EmailConfirmed: boolean;
+	role: string;
+	nbf: number;
+	exp: number;
+	iat: number;
+}
+
+export function getCurrentUser(): jwtData | null {
 	try {
 		const jwt = getJwt();
 

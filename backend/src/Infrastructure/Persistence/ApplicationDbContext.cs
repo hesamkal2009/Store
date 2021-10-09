@@ -24,6 +24,7 @@ namespace Infrastructure.Persistence
             IDateTime dateTime
             ) : base(options, operationalStoreOptions)
         {
+            ChangeTracker.LazyLoadingEnabled = false;
             _currentUserService = currentUserService;
             _domainEventService = domainEventService;
             _dateTime = dateTime;

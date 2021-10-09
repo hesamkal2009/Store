@@ -364,7 +364,7 @@
         ]
       }
     },
-    "/api/UserManager": {
+    "/api/UserManager/Login": {
       "post": {
         "tags": [
           "UserManager"
@@ -396,7 +396,45 @@
             "x-nullable": false,
             "description": "",
             "schema": {
-              "type": "string"
+              "$ref": "#/definitions/LoginViewModel"
+            }
+          }
+        }
+      }
+    },
+    "/api/UserManager/Register": {
+      "post": {
+        "tags": [
+          "UserManager"
+        ],
+        "operationId": "UserManager_Restier",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "command",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LoginCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/LoginViewModel"
             }
           }
         }
@@ -900,6 +938,14 @@
           "format": "int32"
         },
         "title": {
+          "type": "string"
+        }
+      }
+    },
+    "LoginViewModel": {
+      "type": "object",
+      "properties": {
+        "identityToken": {
           "type": "string"
         }
       }

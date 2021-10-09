@@ -7,7 +7,9 @@ class TheFooter extends React.Component<RouteComponentProps<{}>> {
 		return (
 			<footer className="row">
 				<div className="col-12  py-3 bg-dark">
-					<span className="text-muted">Place sticky footer content here.</span>
+					<span className="text-muted">
+						All rights reserved © Copyright
+					</span>
 				</div>
 			</footer>
 		);

@@ -1,0 +1,77 @@
+## Features
+
+---
+
+-   [X] React js
+-   [X] Bootstrap 5.x
+-   [ ] Unlimited sidebars
+-   [ ] 1 Restaurant Dashboard Landing page
+-   [ ] Quickbar
+-   [ ] jQuery
+-   [ ] Google and Vector Maps
+-   [ ] Datatables
+-   [ ] 100+ Components
+-   [ ] 1000+ UI elements
+-   [ ] 2 Color schemes
+-   [ ] Multiple layouts
+-   [ ] Quick bar Access
+-   [ ] 3 Applications
+-   [ ] Beautiful Charts
+-   [ ] Perfectly responsive on all screen sizes
+-   [ ] Easily Customizable
+-   [ ] Dark Mode
+-   [ ] Form elements, layouts and wizards
+-   [ ] Keyboard Shortcuts
+
+## Credits
+
+---
+
+-   [X] south-paw/react-vector-maps
+-   [X] testing-library/jest-dom
+-   [X] testing-library/react
+-   [X] testing-library/user-event
+-   [X] bootstrap
+-   [ ] chart.js
+-   [X] classnames
+-   [ ] cropperjs
+-   [ ] datatables.net
+-   [ ] datatables.net-bs4,
+-   [ ] datatables.net-dt
+-   [ ] driver.js
+-   [ ] goober,
+-   [ ] google-map-react
+-   [ ] ion-rangeslider
+-   [ ] query
+-   [ ] jquery-steps
+-   [ ] jquery-ui
+-   [ ] jquery.steps
+-   [X] react
+-   [ ] react-chartjs-2
+-   [ ] react-cropper
+-   [ ] react-cropper-image-editor
+-   [ ] react-cropperjs
+-   [ ] react-data-components
+-   [ ] react-datepicker
+-   [X] react-dom
+-   [ ] react-google-charts
+-   [ ] react-image-crop
+-   [ ] react-image-crop-component
+-   [ ] react-ion-slider
+-   [ ] react-jquery-datatables
+-   [ ] react-jqueryui-datepicker
+-   [ ] react-jvectormap
+-   [ ] react-perfect-scrollbar
+-   [ ] react-responsive-modal
+-   [ ] react-router-dom
+-   [ ] react-scripts
+-   [ ] react-simple-maps
+-   [ ] react-toastify
+-   [ ] react-tooltip
+-   [ ] recharts
+-   [ ] smartwizard
+-   [ ] sweetalert-react
+-   [ ] sweetalert2
+-   [ ] sweetalert2-react
+-   [ ] sweetalert2-react-content
+-   [X] toastr

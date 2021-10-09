@@ -6,30 +6,28 @@ using System.Threading.Tasks;
 
 namespace Application.UserManager.Commands.Login
 {
-    public class LoginCommand : IRequest<string>
+    public class LoginCommand : IRequest<LoginViewModel>
     {
         public string Email { get; set; }
         public string Password { get; set; }
     }
 
-    public class LoginCommandHandler : IRequestHandler<LoginCommand, string>
+    public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginViewModel>
     {
-        public LoginCommandHandler(IAuthenticationManager authenticationManager, IIdentityService identityService)
+        public LoginCommandHandler(IIdentityService identityService)
         {
-            _authenticationManager = authenticationManager;
             _identityService = identityService;
         }
 
-        private readonly IAuthenticationManager _authenticationManager;
         private readonly IIdentityService _identityService;
 
-        public async Task<string> Handle(LoginCommand request, CancellationToken cancellationToken)
+        public async Task<LoginViewModel> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
-            var userExists = await _identityService.FindUserAsync(request.Email);
+            var userId = await _identityService.FindUserIdAsync(request.Email, request.Password);
 
-            Guard.Against.NullOrEmpty(userExists, nameof(userExists), "User with specified email doesn't exists.");
+            Guard.Against.NullOrWhiteSpace(userId, nameof(userId), "User with specified email doesn't exists.");
 
-            return _authenticationManager.GenerateToken();
+            return new LoginViewModel { IdentityToken = await _identityService.GenerateToken(userId) };
         }
     }
 }
