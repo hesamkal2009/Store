@@ -13,13 +13,4 @@ namespace Application.UserManager.Commands.Register
             RuleFor(o => o.Password).MinimumLength(8).NotEmpty().NotNull();
         }
     }
-
-    public class ClaimDtoValidator : AbstractValidator<ClaimDto>
-    {
-        public ClaimDtoValidator()
-        {
-            RuleFor(o => o.ClaimType).MaximumLength(250).NotEmpty().NotNull();
-            RuleFor(o => o.ClaimValue).MaximumLength(250).NotEmpty().NotNull();
-        }
-    }
 }

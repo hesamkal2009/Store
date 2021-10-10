@@ -519,7 +519,7 @@ export class TodoListsClient implements ITodoListsClient {
 
 export interface IUserManagerClient {
     login(command: LoginCommand): Promise<LoginViewModel>;
-    restier(command: LoginCommand): Promise<LoginViewModel>;
+    restier(command: RegisterCommand): Promise<Result>;
 }
 
 export class UserManagerClient implements IUserManagerClient {
@@ -583,7 +583,7 @@ export class UserManagerClient implements IUserManagerClient {
         return Promise.resolve<LoginViewModel>(<any>null);
     }
 
-    restier(command: LoginCommand , cancelToken?: CancelToken | undefined): Promise<LoginViewModel> {
+    restier(command: RegisterCommand , cancelToken?: CancelToken | undefined): Promise<Result> {
         let url_ = this.baseUrl + "/api/UserManager/Register";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -611,7 +611,7 @@ export class UserManagerClient implements IUserManagerClient {
         });
     }
 
-    protected processRestier(response: AxiosResponse): Promise<LoginViewModel> {
+    protected processRestier(response: AxiosResponse): Promise<Result> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -631,7 +631,7 @@ export class UserManagerClient implements IUserManagerClient {
             const _responseText = response.data;
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
         }
-        return Promise.resolve<LoginViewModel>(<any>null);
+        return Promise.resolve<Result>(<any>null);
     }
 }
 
@@ -1166,6 +1166,29 @@ export interface LoginViewModel {
 export interface LoginCommand {
     email?: string | undefined;
     password?: string | undefined;
+}
+
+export interface Result {
+    succeeded: boolean;
+    errors?: string[] | undefined;
+    isLoading: boolean;
+    lastFetched: Date;
+    data?: any | undefined;
+    messages?: string[] | undefined;
+}
+
+export interface RegisterCommand {
+    email?: string | undefined;
+    userName?: string | undefined;
+    password?: string | undefined;
+    phoneNumber?: string | undefined;
+    claims?: ClaimDto[] | undefined;
+    roles?: string[] | undefined;
+}
+
+export interface ClaimDto {
+    claimType?: string | undefined;
+    claimValue?: string | undefined;
 }
 
 export interface PaginatedListOfFoodCategoryDto {

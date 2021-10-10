@@ -13,7 +13,7 @@ namespace Infrastructure.Persistence
     {
         public static async Task SeedDefaultUserAsync(
             UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager
+            RoleManager<ApplicationRole> roleManager
             )
         {
             var defaultRole = new ApplicationRole

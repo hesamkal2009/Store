@@ -424,7 +424,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/LoginCommand"
+              "$ref": "#/definitions/RegisterCommand"
             },
             "x-nullable": false
           }
@@ -434,7 +434,7 @@
             "x-nullable": false,
             "description": "",
             "schema": {
-              "$ref": "#/definitions/LoginViewModel"
+              "$ref": "#/definitions/Result"
             }
           }
         }
@@ -957,6 +957,79 @@
           "type": "string"
         },
         "password": {
+          "type": "string"
+        }
+      }
+    },
+    "Result": {
+      "type": "object",
+      "required": [
+        "succeeded",
+        "isLoading",
+        "lastFetched"
+      ],
+      "properties": {
+        "succeeded": {
+          "type": "boolean"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isLoading": {
+          "type": "boolean"
+        },
+        "lastFetched": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "data": {},
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "RegisterCommand": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "claims": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ClaimDto"
+          }
+        },
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ClaimDto": {
+      "type": "object",
+      "properties": {
+        "claimType": {
+          "type": "string"
+        },
+        "claimValue": {
           "type": "string"
         }
       }

@@ -22,9 +22,9 @@ namespace Infrastructure.Identity
 
         private ApplicationRole RoleMapper(RoleDto roleDto) => _mapper.Map<ApplicationRole>(roleDto);
 
-        public async Task<Result> CreateRoleAsync()
+        public async Task<Result> CreateRoleAsync(RoleDto roleDto)
         {
-            var result = await _roleManager.CreateAsync(new ApplicationRole() { Name = "New Role", NormalizedName = "New Role".ToUpper() });
+            var result = await _roleManager.CreateAsync(RoleMapper(roleDto));
 
             return result.ToApplicationResult();
         }

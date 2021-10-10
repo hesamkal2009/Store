@@ -34,8 +34,8 @@ namespace Web.API
                         context.Database.Migrate();
                     }
 
-                    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
-                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    UserManager<ApplicationUser> userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                    RoleManager<ApplicationRole> roleManager = services.GetRequiredService<RoleManager<ApplicationRole>>();
 
                     await ApplicationDbContextSeed.SeedDefaultUserAsync(userManager, roleManager);
                     await ApplicationDbContextSeed.SeedSampleDataAsync(context);

@@ -61,15 +61,13 @@ namespace Infrastructure
                 // User settings
                 options.User.RequireUniqueEmail = true;
             })
-                .AddDefaultTokenProviders()
-                .AddRoles<IdentityRole>()
+                .AddRoles<ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
-
-            services.AddIdentityServer()
-                .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
 
             //! Custom Classes Mappings
             services.AddTransient<IDateTime, DateTimeService>();
+
+            services.AddTransient<IRoleService, RoleService>();
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<ITokenKeyProvider, TokenKeyProvider>();
 

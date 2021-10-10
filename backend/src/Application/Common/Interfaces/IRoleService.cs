@@ -10,7 +10,7 @@ namespace Application.Common.Interfaces
     {
         Task<(Result Result, string RoleId)> AddClaimToRoleAsync(RoleDto roleDto, Claim claim);
 
-        Task<Result> CreateRoleAsync();
+        Task<Result> CreateRoleAsync(RoleDto roleDto);
 
         Task<(Result Result, string RoleId)> DeleteClaimFromRoleAsync(RoleDto roleDto, Claim claim);
 

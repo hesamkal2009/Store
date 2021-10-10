@@ -107,7 +107,6 @@ namespace Web.API
             app.UseCors("FreePolicy");
 
             app.UseAuthentication();
-            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

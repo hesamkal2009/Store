@@ -10,23 +10,23 @@ namespace Infrastructure.Identity
     {
     }
 
-    //public class ApplicationUserRole : IdentityUserRole<string>
-    //{
-    //}
+    public class ApplicationUserRole : IdentityUserRole<string>
+    {
+    }
 
-    //public class ApplicationUserClaim : IdentityUserClaim<string>
-    //{
-    //}
+    public class ApplicationUserClaim : IdentityUserClaim<string>
+    {
+    }
 
-    //public class ApplicationRoleClaim : IdentityRoleClaim<string>
-    //{
-    //}
+    public class ApplicationRoleClaim : IdentityRoleClaim<string>
+    {
+    }
 
-    //public class ApplicationUserLogin : IdentityUserLogin<string>
-    //{
-    //}
+    public class ApplicationUserLogin : IdentityUserLogin<string>
+    {
+    }
 
-    //public class ApplicationUserToken : IdentityUserToken<string>
-    //{
-    //}
+    public class ApplicationUserToken : IdentityUserToken<string>
+    {
+    }
 }

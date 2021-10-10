@@ -9,7 +9,8 @@ namespace Infrastructure.Identity.Mappings
         {
             CreateMap<ApplicationUser, UserDto>()
                 .ForMember(o => o.claims, options => options.Ignore())
-                .ForMember(o => o.Roles, options => options.Ignore());
+                .ForMember(o => o.Roles, options => options.Ignore())
+                .ForMember(o => o.Password, o => o.MapFrom(x => x.PasswordHash));
 
             CreateMap<ApplicationRole, RoleDto>();
         }

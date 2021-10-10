@@ -3,8 +3,9 @@ using Domain.Common;
 using Domain.Entities;
 using IdentityServer4.EntityFramework.Options;
 using Infrastructure.Identity;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.Options;
 using Store.Domain.Entities;
 using System.Linq;
@@ -14,7 +15,17 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>, IApplicationDbContext
+    public class ApplicationDbContext 
+        : IdentityDbContext<
+            ApplicationUser,
+            ApplicationRole,
+            string,
+            ApplicationUserClaim,
+            ApplicationUserRole,
+            ApplicationUserLogin,
+            ApplicationRoleClaim,
+            ApplicationUserToken
+            >, IApplicationDbContext
     {
         public ApplicationDbContext(
             DbContextOptions options,
@@ -22,17 +33,18 @@ namespace Infrastructure.Persistence
             ICurrentUserService currentUserService,
             IDomainEventService domainEventService,
             IDateTime dateTime
-            ) : base(options, operationalStoreOptions)
+            ) : base(options)
         {
             ChangeTracker.LazyLoadingEnabled = false;
+
+            _dateTime = dateTime;
             _currentUserService = currentUserService;
             _domainEventService = domainEventService;
-            _dateTime = dateTime;
         }
 
+        private readonly IDateTime _dateTime;
         private readonly ICurrentUserService _currentUserService;
         private readonly IDomainEventService _domainEventService;
-        private readonly IDateTime _dateTime;
 
         public DbSet<Food> Foods { get; set; }
         public DbSet<FoodCategory> FoodCategories { get; set; }
@@ -48,7 +60,7 @@ namespace Infrastructure.Persistence
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         {
-            foreach (Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry<AuditableEntity> entity in ChangeTracker.Entries<AuditableEntity>())
+            foreach (EntityEntry<AuditableEntity> entity in ChangeTracker.Entries<AuditableEntity>())
             {
                 switch (entity.State)
                 {
