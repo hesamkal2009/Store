@@ -5,6 +5,7 @@
 		"titleBar.activeForeground": "#FBF9FC"
 	},
 	"cSpell.words": [
+		"browserslist",
 		"fontawesome",
 		"fortawesome",
 		"immer",
@@ -23,6 +24,9 @@
 		"**/.classpath": true,
 		"**/.project": true,
 		"**/.settings": true,
-		"**/.factorypath": true
+		"**/.factorypath": true,
+		"[!s]*/**": true,
+		"s[!r]*/**": true,
+		"sr[!c]*/**": true
 	}
 }

@@ -10,6 +10,7 @@ namespace Application.UserManager.Commands.Login
     {
         public string Email { get; set; }
         public string Password { get; set; }
+        public bool RememberMe { get; set; }
     }
 
     public class LoginCommandHandler : IRequestHandler<LoginCommand, LoginViewModel>
@@ -27,7 +28,7 @@ namespace Application.UserManager.Commands.Login
 
             Guard.Against.NullOrWhiteSpace(userId, nameof(userId), "User with specified email doesn't exists.");
 
-            return new LoginViewModel { IdentityToken = await _identityService.GenerateToken(userId) };
+            return new LoginViewModel { IdentityToken = await _identityService.GenerateToken(userId, request.RememberMe) };
         }
     }
 }

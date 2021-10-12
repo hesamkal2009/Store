@@ -104,7 +104,7 @@ namespace Web.API
 
             app.UseRouting();
 
-            app.UseCors("FreePolicy");
+            app.UseCors("CorsPolicy");
 
             app.UseAuthentication();
             app.UseAuthorization();

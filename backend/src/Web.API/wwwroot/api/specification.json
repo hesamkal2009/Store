@@ -952,12 +952,18 @@
     },
     "LoginCommand": {
       "type": "object",
+      "required": [
+        "rememberMe"
+      ],
       "properties": {
         "email": {
           "type": "string"
         },
         "password": {
           "type": "string"
+        },
+        "rememberMe": {
+          "type": "boolean"
         }
       }
     },

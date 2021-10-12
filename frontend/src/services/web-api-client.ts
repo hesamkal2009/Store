@@ -1166,6 +1166,7 @@ export interface LoginViewModel {
 export interface LoginCommand {
     email?: string | undefined;
     password?: string | undefined;
+    rememberMe: boolean;
 }
 
 export interface Result {

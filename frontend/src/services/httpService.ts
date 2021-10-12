@@ -26,6 +26,9 @@ const agentInstance = axios.create({
 	headers: {
 		common: {
 			Authorization: `x-auth-token ${jwtToken}`,
+			// "Access-Control-Allow-Origin": "*",
+			// "Access-Control-Allow-Headers":
+			// 	"Origin, X-Requested-With, Content-Type, Accept",
 		},
 	},
 	transformResponse: [],

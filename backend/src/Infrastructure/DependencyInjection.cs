@@ -88,11 +88,6 @@ namespace Infrastructure
                         OnAuthenticationFailed = context =>
                         {
                             throw new Exception("I'm yielling from DependencyInjection in Infra layer, smth is wrong in jwt");
-                        },
-                        OnMessageReceived = context =>
-                        {
-                            Console.WriteLine("I'm yielling from DependencyInjection in Infra layer, Message Recieved!");
-                            return Task.CompletedTask;
                         }
                     };
 

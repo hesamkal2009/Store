@@ -22,7 +22,7 @@ namespace Application.Common.Interfaces
         Task<Result> DeleteUserAsync(string userId);
         Task<UserDto> FindUserByIdAsync(string userId);
         Task<string> FindUserIdAsync(string email, string password);
-        Task<string> GenerateToken(string userId);
+        Task<string> GenerateToken(string userId, bool rememberMe);
         Task<int> GetUserAccessFailedCountAsync(UserDto userDto);
         Task<UserDto> GetUserAsync(string userId);
         Task<IList<Claim>> GetUserClaimsAsync(UserDto userDto);

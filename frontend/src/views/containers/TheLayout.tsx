@@ -9,11 +9,9 @@ class TheLayout extends React.Component<RouteComponentProps<{}>> {
 	render() {
 		return (
 			<React.Fragment>
-				<div className="container-fluid">
-					<TheHeader {...this.props} />
-					<TheContent {...this.props} />
-					<TheFooter {...this.props} />
-				</div>
+				<TheHeader {...this.props} />
+				<TheContent {...this.props} />
+				<TheFooter {...this.props} />
 			</React.Fragment>
 		);
 	}

@@ -4,11 +4,13 @@ using Application.FoodServices.Commands.DeleteFood;
 using Application.FoodServices.Commands.UpdateFood;
 using Application.FoodServices.Queries.GetFoods;
 using Application.FoodServices.Queries.GetFoodsWithPaginationQuery;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Web.API.Controllers
 {
+    [AllowAnonymous]
     public class FoodController : ApiController
     {
         [HttpGet]

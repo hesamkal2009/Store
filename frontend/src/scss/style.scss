@@ -1,3 +1,5 @@
+// Here you can add other styles
+
 // If you want to override variables do it here
 @import "variables";
 
@@ -7,30 +9,97 @@
 // If you want to add something do it here
 @import "custom";
 
+// react-bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+.pull-left {
+	float: left !important;
+}
+
+.pull-right {
+	float: right !important;
+}
+
+.loading {
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+
+	img {
+		width: 400px;
+	}
+}
+
 body {
-	background: #005aa7; /* fallback for old browsers */
-	background: -webkit-linear-gradient(
-		to right,
-		#fffde4,
-		#005aa7
-	); /* Chrome 10-25, Safari 5.1-6 */
-	background: linear-gradient(
-		to right,
-		#fffde4,
-		#005aa7
-	); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	font-weight: 600;
+	background-color: #f8f8f8;
 }
 
-.clickable {
-	cursor: pointer;
-}
+// header
+header {
+	box-shadow: 0 10px 15px rgb(25 25 25 / 10%);
 
-.content-panel {
-	min-height: 84.8vh;
-}
+	#header__navbar {
+		z-index: 2;
+		width: 100%;
+		padding: 0 160px;
+		background: transparent !important;
+	}
 
-footer {
-	position: relative;
-	text-align: center;
-	top: 100%;
+	#header__logo {
+		height: 95px;
+		max-height: 95px;
+
+		#header__logo-image {
+			width: 90px;
+			vertical-align: middle;
+		}
+	}
+
+	#navbarScroll > div {
+		align-items: center;
+		align-content: center;
+		justify-content: center;
+	}
+
+	a {
+		font-weight: 600;
+		margin-right: 80px;
+		text-decoration: none;
+		color: $theme-secondary;
+		padding-top: 50px;
+	}
+
+	button,
+	#header__login-button {
+		font-weight: 600;
+		padding: 19px 47px;
+		background: transparent;
+		color: $theme-secondary;
+		border: 1px solid $theme-primary;
+		border-radius: 5px;
+
+		:hover {
+			background: $theme-primary;
+			color: white;
+		}
+	}
+	#adminDropdown {
+		font-weight: 600;
+		padding: 19px 47px;
+		background: transparent;
+		color: $theme-secondary;
+		border: 1px solid $theme-primary;
+		border-radius: 5px;
+	}
+
+	#adminDropdown:hover {
+		background: $theme-primary;
+		color: white;
+	}
+	#adminDropdown[aria-expanded="true"] {
+		background: $theme-primary !important;
+		color: white !important;
+	}
 }

@@ -308,7 +308,7 @@ namespace Infrastructure.Identity
             }
         }
 
-        public async Task<string> GenerateToken(string userId)
+        public async Task<string> GenerateToken(string userId, bool rememberMe)
         {
             ApplicationUser user = await _userManager.Users.FirstAsync(u => u.Id == userId);
 
@@ -338,10 +338,18 @@ namespace Infrastructure.Identity
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(userClaimsList),
-                Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(serviceApiKey), SecurityAlgorithms.HmacSha256),
                 IssuedAt = DateTime.UtcNow
             };
+
+            if (!rememberMe)
+            {
+                tokenDescriptor.Expires = DateTime.UtcNow.AddDays(1);
+            }
+            else
+            {
+                tokenDescriptor.Expires = DateTime.UtcNow.AddDays(365);
+            }
 
             var createdToken = tokenHandler.CreateToken(tokenDescriptor);
             var token = tokenHandler.WriteToken(createdToken);

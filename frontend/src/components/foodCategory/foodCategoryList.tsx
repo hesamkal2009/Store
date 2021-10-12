@@ -24,7 +24,7 @@ const FoodCategory = (props: IFoodCategoryProps) => {
 	const dispatch = useAppDispatch();
 	useEffect(() => {
 		getFoodCategorys()(dispatch, getState());
-	}, []);
+	}, [dispatch]);
 
 	return (
 		<div>

@@ -41,5 +41,10 @@ This is a sample that is implemented by the following technologies:
 -   JWT-Decode
 -   Immer
 -   Bootstrap 5.0
+-   React-Bootstrap
+-   React-Router-Bootstrap
+-   JQuery
+-   Material UI + Styled-Componenets
 -   Font-Awesome
+-   React-Slideshow-Image
 -   Joi

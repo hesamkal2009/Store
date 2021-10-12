@@ -1,1 +1,77 @@
-// Here you can add other styles
+@import "variables";
+
+.form-control:focus {
+	border-color: $theme-primary !important;
+	box-shadow: 0 0 0 0.25rem rgb(255 86 0 / 25%) !important;
+}
+
+.container-fluid {
+	padding: 0 !important;
+}
+
+.form-check-input {
+	background-color: inherit !important;
+	border-color: $theme-primary !important;
+}
+
+.form-check-input:checked {
+	background-color: $theme-primary !important;
+	border-color: $theme-primary !important;
+}
+
+.btn-primary {
+	background: transparent !important;
+	color: white !important;
+	border: 1px solid $theme-primary !important;
+	background: $theme-primary !important;
+}
+
+.btn-primary:hover {
+	background: $theme-primary-hover !important;
+	color: white !important;
+}
+
+.btn-secondary {
+	background: transparent !important;
+	color: $theme-secondary !important;
+	border: 1px solid $theme-primary !important;
+}
+
+.btn-secondary:hover {
+	background: $theme-primary !important;
+	color: white !important;
+}
+
+hr:not([size]) {
+	color: $theme-primary-hover;
+}
+
+.navbar-light .navbar-nav .show > .nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.dropdown-item.active,
+.dropdown-item:active {
+	color: $theme-primary-hover !important;
+	background: transparent !important;
+}
+
+.btn-success:hover {
+	background: success !important;
+	color: white !important;
+}
+
+.btn-warning:hover {
+	background: warning !important;
+	color: white !important;
+}
+
+.btn-danger:hover {
+	background: danger !important;
+	color: white !important;
+}
+
+.dropdown-item {
+	color: $theme-secondary !important;
+}
+.dropdown__text-active > a {
+	color: $theme-primary-hover !important;
+}

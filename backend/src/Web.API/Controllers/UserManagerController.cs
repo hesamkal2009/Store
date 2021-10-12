@@ -2,7 +2,6 @@
 using Application.UserManager.Commands.Login;
 using Application.UserManager.Commands.Register;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Web.API.Controllers;
@@ -12,7 +11,6 @@ namespace Store.Web.API.Controllers
     [ApiController]
     [AllowAnonymous]
     [Route("api/[controller]")]
-    [EnableCors("CorsPolicy")]
     public class UserManagerController : ApiController
     {
         [HttpPost]

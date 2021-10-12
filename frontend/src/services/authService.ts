@@ -1,7 +1,12 @@
 import jwtDecode from "jwt-decode";
 import agentInstance, { httpService } from "./httpService";
 import { serviceUrl, auth } from "../config.json";
-import { UserManagerClient, LoginCommand } from "./web-api-client";
+import {
+	UserManagerClient,
+	LoginCommand,
+	LoginViewModel,
+} from "./web-api-client";
+import { toast } from "react-toastify";
 
 httpService.setJwt(getJwt());
 
@@ -15,26 +20,82 @@ function removeJwtToken() {
 	localStorage.removeItem(auth.tokenKeyName);
 }
 
-export async function login(email: string, password: string) {
+export async function login(
+	email: string,
+	password: string,
+	rememberMe: boolean,
+	prevPathName: string = "/"
+) {
 	const command: LoginCommand = {
 		email: email,
 		password: password,
+		rememberMe: rememberMe,
 	};
 
-	const result = await userManagerClient.login(command);
-	console.log(result);
-	if (result.identityToken !== undefined) {
-		storeJwtToken(result.identityToken);
-		window.location.href = "/";
+	let result: LoginViewModel;
+	try {
+		result = await userManagerClient.login(command);
+		if (result.identityToken !== undefined) {
+			storeJwtToken(result.identityToken);
+			toast.success("Fabulous! Successful login, Welcome!", {
+				position: toast.POSITION.TOP_RIGHT,
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			});
+			setTimeout(() => {
+				window.location.href = prevPathName;
+			}, 2000);
+		}
+	} catch (error) {
+		console.log(error);
+		toast.error(
+			"Ooops! Login failed, You might want to check your credentials!",
+			{
+				position: toast.POSITION.TOP_RIGHT,
+				autoClose: 5000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+			}
+		);
 	}
 }
 
 export function logout() {
-	removeJwtToken();
-	window.location.reload();
+	try {
+		removeJwtToken();
+		toast.warn("It's so sad to see you leaving, Have a great day!", {
+			position: "top-right",
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
+		setTimeout(() => {
+			window.location.reload();
+		}, 2000);
+	} catch (error) {
+		toast.error("Ooops! Logout failed!", {
+			position: toast.POSITION.TOP_RIGHT,
+			autoClose: 5000,
+			hideProgressBar: false,
+			closeOnClick: true,
+			pauseOnHover: true,
+			draggable: true,
+			progress: undefined,
+		});
+	}
 }
 
-export function getJwt() {
+export function getJwt(): string | null {
 	return localStorage.getItem(auth.tokenKeyName);
 }
 

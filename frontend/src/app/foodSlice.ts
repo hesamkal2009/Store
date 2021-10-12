@@ -156,10 +156,9 @@ export const getPaginatedFoods =
 		return dispatch(
 			apiCallBegan({
 				url: config.food.urls.get,
-				onStart: paginatedListOfFoodDtosRequested.type,
+				onStart: paginatedListOfFoodDtosRequested.type, 
 				onSuccess: paginatedListOfFoodDtosReceived.type,
-				onError: paginatedListOfFoodDtosRequestFailed.type,
-				logResponse: true,
+				onError: paginatedListOfFoodDtosRequestFailed.type
 			})
 		);
 	};
