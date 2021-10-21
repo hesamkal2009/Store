@@ -1,3 +1,26 @@
+@import "../../scss/variables";
+
 .react-slideshow-container .default-nav {
 	display: none !important;
+}
+
+.slider__caption:not(span) {
+	background-color: rgba(0, 0, 0, 0.5);
+	height: 900px;
+	opacity: 1;
+}
+
+.slider__caption_text {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+	height: 900px;
+	color: rgba($color: white, $alpha: 1);
+	text-transform: uppercase;
+	text-decoration: solid;
+	font-weight: 900;
+	font-size: 3rem;
+	text-align: center;
+	font-family: $theme-font-secondary;
 }

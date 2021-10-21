@@ -1,23 +1,38 @@
-import React from "react";
 // @ts-ignore
 import { Slide } from "react-slideshow-image";
-import { Image } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import "react-slideshow-image/dist/styles.css";
 import "./slideShow.scss";
 
-export const Slideshow = (props: any) => {
+export const SlideShow = (props: any) => {
 	return (
-		<div className="slide-container">
-			<Slide>
-				{props.slideImages.map((slideImage: any, index: any) => (
-					<Image
-						key={index}
-						src={slideImage}
-						width="1920"
-						height="850"
-					/>
-				))}
-			</Slide>
-		</div>
+		<Row>
+			<Col>
+				<div className="slide-container">
+					<Slide>
+						{props.slideImages.map(
+							(slideImage: any, index: any) => (
+								<div className="each-slide" key={index}>
+									<div
+										style={{
+											height: `900px`,
+											backgroundSize: "cover",
+											backgroundRepeat: "no-repeat",
+											backgroundImage: `url(${slideImage.url})`,
+										}}
+									>
+										<div className="slider__caption">
+											<span className="slider__caption_text">
+												{slideImage.caption}
+											</span>
+										</div>
+									</div>
+								</div>
+							)
+						)}
+					</Slide>
+				</div>
+			</Col>
+		</Row>
 	);
 };

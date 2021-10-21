@@ -1,3 +1,6 @@
+@import "../assets/fonts/dancingScript/font-interface.scss";
+@import "../assets/fonts/comfortaa/font-interface.scss";
+
 // Variable overrides
 :root {
 	--blue: #007bff;
@@ -38,3 +41,5 @@ $theme-background: #f8f8f8;
 $theme-primary: #ff5600;
 $theme-primary-hover: #e74d00;
 $theme-secondary: #091a23;
+$theme-font-primary: "Comfortaa";
+$theme-font-secondary: "dancing_script";

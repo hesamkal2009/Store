@@ -1,0 +1,21 @@
+/* comfortaa-regular - latin_greek_cyrillic */
+@font-face {
+	font-family: "Comfortaa";
+	font-style: normal;
+	font-weight: 400;
+	src: url("comfortaa-v30-latin_greek_cyrillic-regular.eot");
+	src: local(""),
+		url("comfortaa-v30-latin_greek_cyrillic-regular.eot?#iefix")
+			format("embedded-opentype"),
+		/* IE6-IE8 */ url("comfortaa-v30-latin_greek_cyrillic-regular.woff2")
+			format("woff2"),
+		/* Super Modern Browsers */
+			url("comfortaa-v30-latin_greek_cyrillic-regular.woff")
+			format("woff"),
+		/* Modern Browsers */
+			url("comfortaa-v30-latin_greek_cyrillic-regular.ttf")
+			format("truetype"),
+		/* Safari, Android, iOS */
+			url("comfortaa-v30-latin_greek_cyrillic-regular.svg#Comfortaa")
+			format("svg"); /* Legacy iOS */
+}

@@ -32,6 +32,7 @@
 }
 
 body {
+	font-family: $theme-font-primary, $theme-font-secondary;
 	font-weight: 600;
 	background-color: #f8f8f8;
 }
@@ -39,6 +40,10 @@ body {
 // header
 header {
 	box-shadow: 0 10px 15px rgb(25 25 25 / 10%);
+
+	:hover {
+		color: $theme-primary !important;
+	}
 
 	#header__navbar {
 		z-index: 2;
@@ -102,4 +107,13 @@ header {
 		background: $theme-primary !important;
 		color: white !important;
 	}
+}
+
+main {
+	min-height: 600px;
+}
+
+footer {
+	height: 600px;
+	background: url("../assets/images/shandiz.jpg") no-repeat;
 }

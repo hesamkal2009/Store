@@ -1,11 +1,11 @@
 @import "react-slideshow-image/dist/styles.css";
 
-.about {
-	background: white;
+.motivation {
 	min-height: 450px;
-}
-
-.about2 {
 	background: red;
-	min-height: 450px;
+
+	display: flex;
+	vertical-align: middle;
+	justify-content: center;
+	align-items: center;
 }

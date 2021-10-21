@@ -1,0 +1,57 @@
+@import "../../scss/variables";
+
+.aboutMe {
+	min-height: 610px;
+	background: white;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 60px 0;
+	text-align: center;
+
+	p {
+		line-height: 30px;
+		text-align: justify;
+		text-align-last: center;
+	}
+
+	p:nth-child(1) {
+		margin: 40px 0;
+		font-size: 2rem;
+		font-weight: bolder;
+		color: $theme-primary;
+	}
+
+	p:nth-child(2) {
+		margin: 40px 0;
+		font-weight: 700;
+	}
+
+	span.signature {
+		font-size: 1.8rem;
+		color: $theme-primary;
+		font-family: $theme-font-secondary;
+	}
+
+	p:nth-child(3) {
+		padding: 10px;
+		margin: 40px 0;
+		font-size: 1rem;
+		font-weight: 700;
+		color: $theme-secondary;
+	}
+
+	.aboutMe__hesamKalhor {
+		width: 100%;
+		display: flex;
+		padding: 10px;
+		font-size: 1rem;
+		text-align: center;
+		align-items: center;
+		border-radius: 15px;
+		justify-content: center;
+		border: 4px double $theme-primary-hover;
+	}
+}

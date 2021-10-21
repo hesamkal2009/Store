@@ -32,10 +32,11 @@ This is a sample that is implemented by the following technologies:
 -   Reselect
 -   Axios
 -   SASS
+-   Formik
+-   Joi (Form Validation)
 -   Styled-Components
 -   React-App-Polyfill
 -   Query-String
--   Prop-Types
 -   Moment
 -   Lodash
 -   JWT-Decode
@@ -47,4 +48,3 @@ This is a sample that is implemented by the following technologies:
 -   Material UI + Styled-Componenets
 -   Font-Awesome
 -   React-Slideshow-Image
--   Joi
