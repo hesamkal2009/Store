@@ -12,6 +12,7 @@ namespace Application.Common.Interfaces
         DbSet<FoodCategory> FoodCategories { get; set; }
         DbSet<TodoList> TodoLists { get; set; }
         DbSet<TodoItem> TodoItems { get; set; }
+        DbSet<ContactMe> ContactMes { get; set; }
 
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

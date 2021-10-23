@@ -22,7 +22,7 @@ namespace Store.Web.API.Controllers
 
         [HttpPost]
         [Route("Register")]
-        public async Task<ActionResult<Result>> Restier([FromBody] RegisterCommand command)
+        public async Task<ActionResult<Result>> Register([FromBody] RegisterCommand command)
         {
             return await Mediator.Send(command);
         }

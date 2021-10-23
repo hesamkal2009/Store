@@ -4,6 +4,7 @@ using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Store.Domain.Entities;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,7 +22,7 @@ namespace Infrastructure.Persistence
                 Id = Guid.NewGuid().ToString(),
                 Name = "Administrator",
                 NormalizedName = "ADMINISTRATOR",
-                ConcurrencyStamp = ""
+                ConcurrencyStamp = Guid.NewGuid().ToString()
             };
 
             var defaultUser = new ApplicationUser
@@ -61,20 +62,85 @@ namespace Infrastructure.Persistence
         {
             if (!context.Foods.Any())
             {
-                var foodCategory = context.FoodCategories.Add(new FoodCategory
-                {
-                    Name = "Irani",
-                    Description = "Persian Dishes",
-                    IsActive = true
-                });
 
-                context.Foods.Add(new Food
+                IEnumerable<FoodCategory> foodCategories = new List<FoodCategory>()
                 {
-                    Name = "Koobideh",
-                    Price = 100000,
-                    FoodCategoryId = foodCategory.Entity.Id,
-                    FoodInventoryStatus = FoodInventoryStatus.Available,
-                });
+                    new FoodCategory
+                    {
+                        Name = "Kebabs & Main Courses",
+                        Description = "Persian kebabs could be served with and without Iranian cooked rice.",
+                        IsActive = true
+                    },
+                    new FoodCategory
+                    {
+                        Name = "Salads & Appetizers",
+                        Description = "Salads and Appetizer could be served before and with Mian Course.",
+                        IsActive = true
+                    },
+                    new FoodCategory
+                    {
+                        Name = "Deserts & Sweets",
+                        Description = "Persian Deserts and Sweets could ONLY be served after Main Course.",
+                        IsActive = true
+                    }
+                };
+
+                IEnumerable<Food> foods = new List<Food>()
+                {
+                    new Food
+                    {
+                        Name = "Koobideh",
+                        Price = 1000000,
+                        FoodCategoryId = 1,
+                        FoodInventoryStatus = FoodInventoryStatus.Available,
+                    },
+                    new Food
+                    {
+                        Name = "Soltani",
+                        Price = 1200000,
+                        FoodCategoryId = 1,
+                        FoodInventoryStatus = FoodInventoryStatus.Available,
+                    },
+                    new Food
+                    {
+                        Name = "Shandiz",
+                        Price = 1800000,
+                        FoodCategoryId = 1,
+                        FoodInventoryStatus = FoodInventoryStatus.RunningLow,
+                    },
+                    new Food
+                    {
+                        Name = "Salad",
+                        Price = 800000,
+                        FoodCategoryId = 2,
+                        FoodInventoryStatus = FoodInventoryStatus.Available,
+                    },
+                    new Food
+                    {
+                        Name = "French Fries",
+                        Price = 500000,
+                        FoodCategoryId = 2,
+                        FoodInventoryStatus = FoodInventoryStatus.RunningLow,
+                    },
+                    new Food
+                    {
+                        Name = "Sohan",
+                        Price = 700000,
+                        FoodCategoryId = 3,
+                        FoodInventoryStatus = FoodInventoryStatus.RanOut,
+                    },
+                    new Food
+                    {
+                        Name = "Chocolate",
+                        Price = 400000,
+                        FoodCategoryId = 3,
+                        FoodInventoryStatus = FoodInventoryStatus.Available,
+                    }
+                };
+
+                context.FoodCategories.AddRange(foodCategories);
+                context.Foods.AddRange(foods);
+
 
                 if (!context.TodoLists.Any())
                 {

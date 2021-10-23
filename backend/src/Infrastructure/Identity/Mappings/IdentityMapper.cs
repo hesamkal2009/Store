@@ -8,11 +8,20 @@ namespace Infrastructure.Identity.Mappings
         public IdentityMapper()
         {
             CreateMap<ApplicationUser, UserDto>()
-                .ForMember(o => o.claims, options => options.Ignore())
-                .ForMember(o => o.Roles, options => options.Ignore())
-                .ForMember(o => o.Password, o => o.MapFrom(x => x.PasswordHash));
+                .ForMember(o => o.Password, o => o.Ignore());
 
-            CreateMap<ApplicationRole, RoleDto>();
+            CreateMap<UserDto, ApplicationUser>()
+               .ForMember(o => o.Id, o => o.Ignore())
+               .ForMember(o => o.SecurityStamp, o => o.Ignore())
+               .ForMember(o => o.ConcurrencyStamp, o => o.Ignore())
+               .ForMember(o => o.LockoutEnabled, o => o.Ignore())
+               .ForMember(o => o.PhoneNumberConfirmed, o => o.Ignore())
+               .ForMember(o => o.EmailConfirmed, o => o.Ignore())
+               .ForMember(o => o.PasswordHash, o => o.MapFrom(x => x.Password));
+
+
+            CreateMap<RoleDto, ApplicationRole>()
+                .ForMember(o => o.ConcurrencyStamp, o => o.Ignore());
         }
     }
 }

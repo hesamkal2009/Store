@@ -24,13 +24,11 @@ namespace Application.UserManager.Commands.Register
 
     public class RegisterCommandHandler : IRequestHandler<RegisterCommand, Result>
     {
-        public RegisterCommandHandler(IIdentityService identityService, IRoleService roleService)
+        public RegisterCommandHandler(IIdentityService identityService)
         {
             _identityService = identityService;
-            _roleService = roleService;
         }
 
-        private readonly IRoleService _roleService;
         private readonly IIdentityService _identityService;
 
         public async Task<Result> Handle(RegisterCommand request, CancellationToken cancellationToken)
@@ -56,13 +54,18 @@ namespace Application.UserManager.Commands.Register
             try
             {
                 List<Claim> claims = new List<Claim>();
-                claims.AddRange(request.claims.Select(c => new Claim(c.ClaimType, c.ClaimValue)));
+                claims?.AddRange(request.claims.Select(c => new Claim(c.ClaimType, c.ClaimValue)));
 
                 var userResult = await _identityService.CreateUserAsync(userDto);
 
-                var claimResult = await _identityService.AddClaimsToUser(userDto, claims);
+                if (userResult.Result.Errors.Any())
+                {
+                    return Result.Failure(userResult.Result.Errors);
+                }
 
-                var roleResult = await _identityService.AddUserToRolesAsync(userDto, request.Roles);
+                var claimResult = await _identityService.AddClaimsToUser(userResult.UserId, claims);
+
+                var roleResult = await _identityService.AddUserToRolesAsync(userResult.UserId, request.Roles);
 
                 return userResult.Result.Succeeded
                 && roleResult.Result.Succeeded

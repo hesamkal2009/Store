@@ -41,13 +41,8 @@ body {
 header {
 	box-shadow: 0 10px 15px rgb(25 25 25 / 10%);
 
-	:hover {
-		color: $theme-primary !important;
-	}
-
 	#header__navbar {
 		z-index: 2;
-		width: 100%;
 		padding: 0 160px;
 		background: transparent !important;
 	}
@@ -70,42 +65,47 @@ header {
 
 	a {
 		font-weight: 600;
+		padding-top: 50px;
 		margin-right: 80px;
 		text-decoration: none;
 		color: $theme-secondary;
-		padding-top: 50px;
+
+		:hover {
+			color: $theme-primary-hover;
+		}
 	}
 
 	button,
 	#header__login-button {
 		font-weight: 600;
 		padding: 19px 47px;
-		background: transparent;
-		color: $theme-secondary;
-		border: 1px solid $theme-primary;
 		border-radius: 5px;
+		color: $theme-secondary;
+		background: transparent;
+		border: 1px solid $theme-primary;
 
 		:hover {
-			background: $theme-primary;
 			color: white;
+			background: $theme-primary;
 		}
 	}
 	#adminDropdown {
 		font-weight: 600;
+		border-radius: 5px;
 		padding: 19px 47px;
 		background: transparent;
 		color: $theme-secondary;
 		border: 1px solid $theme-primary;
-		border-radius: 5px;
 	}
 
+	#header__login-butto:hover,
 	#adminDropdown:hover {
+		color: white !important;
 		background: $theme-primary;
-		color: white;
 	}
 	#adminDropdown[aria-expanded="true"] {
-		background: $theme-primary !important;
 		color: white !important;
+		background: $theme-primary !important;
 	}
 }
 
@@ -114,6 +114,98 @@ main {
 }
 
 footer {
-	height: 600px;
-	background: url("../assets/images/shandiz.jpg") no-repeat;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-image: url("../assets/images/shandiz.jpg");
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+
+	.dimmer {
+		top: 0;
+		left: 0;
+		width: 100%;
+		padding-top: 60px;
+		position: relative;
+		background-color: rgba($color: $theme-secondary, $alpha: 0.6);
+	}
+
+	ul {
+		padding: 0;
+
+		li {
+			list-style: none;
+		}
+	}
+
+	.nav-link {
+		color: white;
+		padding: 10px 0;
+		text-align: center;
+		white-space: nowrap;
+		text-decoration: none;
+	}
+
+	.nav-link:hover {
+		color: $theme-primary-hover;
+		text-decoration: none;
+	}
+
+	#footer__logo {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+
+		#footer__logo-image {
+			width: 40%;
+			vertical-align: middle;
+		}
+	}
+
+	h4 {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		align-content: center;
+
+		font-size: 3rem;
+		font-weight: 600;
+		white-space: nowrap;
+		color: $theme-primary-hover;
+		font-family: $theme-font-secondary;
+	}
+
+	.footer__copyright {
+		width: 100%;
+
+		margin-top: 100px !important;
+
+		.fa-heart {
+			color: $theme-primary;
+		}
+
+		p,
+		a {
+			color: white;
+			text-align: center;
+			text-decoration: none;
+		}
+
+		a:hover {
+			color: $theme-primary-hover;
+		}
+
+		.signature {
+			font-size: 1.8rem;
+			color: $theme-primary;
+			font-family: $theme-font-secondary;
+		}
+		.signature:hover {
+			font-size: 1.8rem;
+			color: white;
+		}
+	}
 }

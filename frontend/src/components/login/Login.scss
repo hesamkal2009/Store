@@ -1,19 +1,11 @@
 @import "../../scss/variables";
 
-.contactMe {
-	min-height: 750px;
-	background: white;
-	padding-top: 50px;
-	padding-bottom: 80px;
-}
-
-.contactMe__form {
+.login__form {
 	border-radius: 5px;
 	border: 1px solid $theme-primary;
 
 	h4 {
-		font-size: 3rem;
-		text-align: center;
+		font-size: 2.5rem;
 		color: $theme-primary;
 		font-family: $theme-font-secondary;
 	}

@@ -1,0 +1,15 @@
+@import "../../scss/variables";
+
+.text-primary {
+	color: $theme-primary !important;
+	font-family: $theme-font-secondary !important;
+	font-size: 1.4rem;
+}
+
+.pointer {
+	cursor: pointer;
+}
+.pointer:hover {
+	background-color: $theme-primary !important;
+	color: $theme-secondary !important;
+}

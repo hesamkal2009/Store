@@ -14,6 +14,7 @@ import sweets from "../../assets/images/sweets.jpg";
 //!
 import "./Home.scss";
 import ContactMe from "../../components/contactMe/contactMe";
+import Motivation from "../../components/motivation/motivation";
 
 const slideImages = [
 	{
@@ -54,25 +55,8 @@ class Home extends React.Component<RouteComponentProps<{}>> {
 			<>
 				<SlideShow slideImages={slideImages} />
 				<AboutMe />
-				<Row className="motivation">
-					<Col className="text-center">
-						<p>Let's Free two birds with one key</p>
-						<p>This project was created with two goals in mind</p>
-						<p>
-							The First goal was to demonstrate my practical
-							knowledge of programming
-						</p>
-						<p>
-							but it was not such a good enough motivation to
-							create this, So I decided to do a bit more
-						</p>
-						<p>
-							And the second goal was to introduce Persian culture
-							and Foods
-						</p>
-					</Col>
-				</Row>
-				<ContactMe />
+				<Motivation />
+				<ContactMe {...this.props} />
 			</>
 		);
 	}

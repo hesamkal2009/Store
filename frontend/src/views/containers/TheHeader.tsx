@@ -1,10 +1,17 @@
 import React from "react";
 import { getCurrentUser, logout } from "../../services/authService";
 import { RouteComponentProps } from "react-router-dom";
-import { Button, Image, Nav, Navbar, NavDropdown, Row } from "react-bootstrap";
+import {
+	Badge,
+	Button,
+	Image,
+	Nav,
+	Navbar,
+	NavDropdown,
+} from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import fakeLogo from "../../assets/images/fakeLogo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class TheHeader extends React.Component<RouteComponentProps<{}>> {
 	private readonly user = getCurrentUser();
@@ -39,29 +46,30 @@ class TheHeader extends React.Component<RouteComponentProps<{}>> {
 							<LinkContainer to="/about">
 								<Nav.Link>About</Nav.Link>
 							</LinkContainer>
-							<LinkContainer to="/menu">
-								<Nav.Link>Menu</Nav.Link>
+							{!this.user && (
+								<LinkContainer to="/register">
+									<Nav.Link>Register</Nav.Link>
+								</LinkContainer>
+							)}
+							<LinkContainer to="/shop">
+								<Nav.Link>Order</Nav.Link>
 							</LinkContainer>
-							<NavDropdown
-								title="Test Pages"
-								className={
-									this.props.location.pathname === "/food" ||
-									this.props.location.pathname ===
-										"/foodCategory"
-										? "dropdown__text-active"
-										: ""
-								}
-							>
-								<LinkContainer to="/food">
-									<NavDropdown.Item>Food</NavDropdown.Item>
-								</LinkContainer>
-								<NavDropdown.Divider />
-								<LinkContainer to="/foodCategory">
-									<NavDropdown.Item>
-										Food Category
-									</NavDropdown.Item>
-								</LinkContainer>
-							</NavDropdown>
+							<LinkContainer to="/cart">
+								<Nav.Link>
+									<Button variant="secondary">
+										<FontAwesomeIcon
+											icon={["fas", "shopping-cart"]}
+										/>{" "}
+										<Badge bg="light" text="dark">
+											9
+										</Badge>
+										<span className="visually-hidden">
+											Items in cart
+										</span>
+									</Button>
+								</Nav.Link>
+							</LinkContainer>
+
 							{!this.user ? (
 								<Button
 									id="header__login-button"

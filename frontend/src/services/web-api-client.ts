@@ -9,6 +9,72 @@
 
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelToken } from 'axios';
 
+export interface IContactMeClient {
+    create(command: ContactMeCommand): Promise<Result>;
+}
+
+export class ContactMeClient implements IContactMeClient {
+    private instance: AxiosInstance;
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(baseUrl?: string, instance?: AxiosInstance) {
+        this.instance = instance ? instance : axios.create();
+        this.baseUrl = baseUrl !== undefined && baseUrl !== null ? baseUrl : "";
+    }
+
+    create(command: ContactMeCommand , cancelToken?: CancelToken | undefined): Promise<Result> {
+        let url_ = this.baseUrl + "/api/ContactMe";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(command);
+
+        let options_ = <AxiosRequestConfig>{
+            data: content_,
+            method: "POST",
+            url: url_,
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            cancelToken
+        };
+
+        return this.instance.request(options_).catch((_error: any) => {
+            if (isAxiosError(_error) && _error.response) {
+                return _error.response;
+            } else {
+                throw _error;
+            }
+        }).then((_response: AxiosResponse) => {
+            return this.processCreate(_response);
+        });
+    }
+
+    protected processCreate(response: AxiosResponse): Promise<Result> {
+        const status = response.status;
+        let _headers: any = {};
+        if (response.headers && typeof response.headers === "object") {
+            for (let k in response.headers) {
+                if (response.headers.hasOwnProperty(k)) {
+                    _headers[k] = response.headers[k];
+                }
+            }
+        }
+        if (status === 200) {
+            const _responseText = response.data;
+            let result200: any = null;
+            let resultData200  = _responseText;
+            result200 = JSON.parse(resultData200);
+            return result200;
+        } else if (status !== 200 && status !== 204) {
+            const _responseText = response.data;
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+        }
+        return Promise.resolve<Result>(<any>null);
+    }
+}
+
 export interface ITodoItemsClient {
     getTodoItemsWithPagination(listId: number | undefined, pageNumber: number | undefined, pageSize: number | undefined): Promise<PaginatedListOfTodoItemDto>;
     create(command: CreateTodoItemCommand): Promise<number>;
@@ -519,7 +585,7 @@ export class TodoListsClient implements ITodoListsClient {
 
 export interface IUserManagerClient {
     login(command: LoginCommand): Promise<LoginViewModel>;
-    restier(command: RegisterCommand): Promise<Result>;
+    register(command: RegisterCommand): Promise<Result>;
 }
 
 export class UserManagerClient implements IUserManagerClient {
@@ -583,7 +649,7 @@ export class UserManagerClient implements IUserManagerClient {
         return Promise.resolve<LoginViewModel>(<any>null);
     }
 
-    restier(command: RegisterCommand , cancelToken?: CancelToken | undefined): Promise<Result> {
+    register(command: RegisterCommand , cancelToken?: CancelToken | undefined): Promise<Result> {
         let url_ = this.baseUrl + "/api/UserManager/Register";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -607,11 +673,11 @@ export class UserManagerClient implements IUserManagerClient {
                 throw _error;
             }
         }).then((_response: AxiosResponse) => {
-            return this.processRestier(_response);
+            return this.processRegister(_response);
         });
     }
 
-    protected processRestier(response: AxiosResponse): Promise<Result> {
+    protected processRegister(response: AxiosResponse): Promise<Result> {
         const status = response.status;
         let _headers: any = {};
         if (response.headers && typeof response.headers === "object") {
@@ -1091,6 +1157,23 @@ export class FoodClient implements IFoodClient {
     }
 }
 
+export interface Result {
+    succeeded: boolean;
+    errors?: string[] | undefined;
+    isLoading: boolean;
+    lastFetched: Date;
+    data?: any | undefined;
+    messages?: string[] | undefined;
+}
+
+export interface ContactMeCommand {
+    fullName?: string | undefined;
+    email?: string | undefined;
+    phoneNumber?: string | undefined;
+    subject?: string | undefined;
+    message?: string | undefined;
+}
+
 export interface PaginatedListOfTodoItemDto {
     items?: TodoItemDto[] | undefined;
     pageIndex: number;
@@ -1167,15 +1250,6 @@ export interface LoginCommand {
     email?: string | undefined;
     password?: string | undefined;
     rememberMe: boolean;
-}
-
-export interface Result {
-    succeeded: boolean;
-    errors?: string[] | undefined;
-    isLoading: boolean;
-    lastFetched: Date;
-    data?: any | undefined;
-    messages?: string[] | undefined;
 }
 
 export interface RegisterCommand {

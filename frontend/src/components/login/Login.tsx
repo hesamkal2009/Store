@@ -39,7 +39,7 @@ class Login extends React.Component<RouteComponentProps<{}>> {
 		return (
 			!getCurrentUser() && (
 				<section>
-					<Row>
+					<Row className="mt-5">
 						<Col lg={{ span: 4, offset: 4 }}>
 							<div className="login__form mt-4 p-4">
 								<Form className="row g-3">

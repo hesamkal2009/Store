@@ -11,6 +11,11 @@
 			"get": "/foodCategory"
 		}
 	},
+	"contactMe": {
+		"urls": {
+			"create": "/ContactMe"
+		}
+	},
 	"auth": {
 		"urls": {
 			"loginUrl": "/auth"

@@ -6,6 +6,44 @@
     "version": "1.0.0"
   },
   "paths": {
+    "/api/ContactMe": {
+      "post": {
+        "tags": [
+          "ContactMe"
+        ],
+        "operationId": "ContactMe_Create",
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/*+json"
+        ],
+        "produces": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "parameters": [
+          {
+            "name": "command",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/ContactMeCommand"
+            },
+            "x-nullable": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "x-nullable": false,
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Result"
+            }
+          }
+        }
+      }
+    },
     "/api/TodoItems": {
       "get": {
         "tags": [
@@ -407,7 +445,7 @@
         "tags": [
           "UserManager"
         ],
-        "operationId": "UserManager_Restier",
+        "operationId": "UserManager_Register",
         "consumes": [
           "application/json",
           "text/json",
@@ -724,6 +762,59 @@
     }
   },
   "definitions": {
+    "Result": {
+      "type": "object",
+      "required": [
+        "succeeded",
+        "isLoading",
+        "lastFetched"
+      ],
+      "properties": {
+        "succeeded": {
+          "type": "boolean"
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "isLoading": {
+          "type": "boolean"
+        },
+        "lastFetched": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "data": {},
+        "messages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "ContactMeCommand": {
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "subject": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
     "PaginatedListOfTodoItemDto": {
       "type": "object",
       "required": [
@@ -964,39 +1055,6 @@
         },
         "rememberMe": {
           "type": "boolean"
-        }
-      }
-    },
-    "Result": {
-      "type": "object",
-      "required": [
-        "succeeded",
-        "isLoading",
-        "lastFetched"
-      ],
-      "properties": {
-        "succeeded": {
-          "type": "boolean"
-        },
-        "errors": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "isLoading": {
-          "type": "boolean"
-        },
-        "lastFetched": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "data": {},
-        "messages": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
         }
       }
     },

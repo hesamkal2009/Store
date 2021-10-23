@@ -1,0 +1,37 @@
+@import "../../scss/variables";
+
+.cart {
+	min-height: 450px;
+	border: 1px solid $theme-primary;
+	border-radius: 15px;
+	padding: 15px;
+
+	.fancy-text {
+		margin: 10px;
+		text-align: center;
+		font-size: 2rem;
+		color: $theme-primary;
+		font-family: $theme-font-secondary;
+	}
+	.fancy-text-md {
+		margin: 10px;
+		font-size: 1.5rem;
+		color: $theme-primary;
+		font-family: $theme-font-secondary;
+	}
+
+	.fancy-text-sm {
+		margin: 10px;
+		font-size: 1rem;
+		color: $theme-primary;
+		font-family: $theme-font-secondary;
+	}
+
+	.cart__button {
+		border-radius: 50px;
+		width: 20px;
+		height: 20px;
+		text-align: center;
+		padding: 0;
+	}
+}

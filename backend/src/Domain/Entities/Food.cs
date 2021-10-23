@@ -8,11 +8,15 @@ namespace Domain.Entities
     public class Food : AuditableEntity, IHasDomainEvent
     {
         public int Id { get; set; }
-        public int FoodCategoryId { get; set; }
+
         public string Name { get; set; }
         public decimal Price { get; set; }
-        public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
 
+        public FoodCategory FoodCategory { get; set; }
+        public int FoodCategoryId { get; set; }
+
+
+        public List<DomainEvent> DomainEvents { get; set; } = new List<DomainEvent>();
 
 
         private FoodInventoryStatus _foodInventoryStatusId;

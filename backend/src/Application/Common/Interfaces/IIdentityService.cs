@@ -8,35 +8,35 @@ namespace Application.Common.Interfaces
 {
     public interface IIdentityService
     {
-        Task<(Result Result, string UserId)> AddClaimsToUser(UserDto userDto, List<Claim> claims);
-        Task<(Result Result, string UserId)> AddClaimToUser(UserDto userDto, Claim claim);
-        Task<(Result Result, string UserId)> AddToUserAccessFailedAsync(UserDto userDto);
-        Task<(Result Result, string UserId)> AddUserPasswordAsync(UserDto userDto);
-        Task<(Result Result, string UserId)> AddUserToRoleAsync(UserDto userDto, string role);
-        Task<bool> AddUserToRolesAsync(UserDto userDto, string role);
-        Task<(Result Result, string UserId)> AddUserToRolesAsync(UserDto userDto, List<string> role);
-        Task<(Result Result, string UserId)> ChangeUserPasswordAsync(UserDto userDto, string oldPassoword, string newPassword);
-        Task<(Result Result, string UserId)> ChangeUserPhoneNumberAsync(UserDto userDto, string oldPhoneNumber, string newPhoneNumber);
-        Task<bool> CheckUserPasswordAsync(UserDto userDto, string givenPassword);
+        Task<(Result Result, string UserId)> AddClaimsToUser(string userId, List<Claim> claims);
+        Task<(Result Result, string UserId)> AddClaimToUser(string userId, Claim claim);
+        Task<(Result Result, string UserId)> AddToUserAccessFailedAsync(string userId);
+        Task<(Result Result, string UserId)> AddUserPasswordAsync(string userId);
+        Task<(Result Result, string UserId)> AddUserToRoleAsync(string userId, string role);
+        Task<bool> AddUserToRolesAsync(string userId, string role);
+        Task<(Result Result, string UserId)> AddUserToRolesAsync(string userId, List<string> role);
+        Task<(Result Result, string UserId)> ChangeUserPasswordAsync(string userId, string oldPassoword, string newPassword);
+        Task<(Result Result, string UserId)> ChangeUserPhoneNumberAsync(string userId, string oldPhoneNumber, string newPhoneNumber);
+        Task<bool> CheckUserPasswordAsync(string userId, string givenPassword);
         Task<(Result Result, string UserId)> CreateUserAsync(UserDto userDto);
         Task<Result> DeleteUserAsync(string userId);
         Task<UserDto> FindUserByIdAsync(string userId);
         Task<string> FindUserIdAsync(string email, string password);
         Task<string> GenerateToken(string userId, bool rememberMe);
-        Task<int> GetUserAccessFailedCountAsync(UserDto userDto);
+        Task<int> GetUserAccessFailedCountAsync(string userId);
         Task<UserDto> GetUserAsync(string userId);
-        Task<IList<Claim>> GetUserClaimsAsync(UserDto userDto);
+        Task<IList<Claim>> GetUserClaimsAsync(string userId);
         Task<string> GetUserNameAsync(string userId);
-        Task<IList<string>> GetUserRolesAsync(UserDto userDto);
+        Task<IList<string>> GetUserRolesAsync(string userId);
         Task<IList<UserDto>> GetUsersForClaimAsync(Claim claim);
-        Task<(Result Result, string UserId)> RemoveClaimFromUser(UserDto userDto, Claim claim);
-        Task<(Result Result, string UserId)> RemoveClaimsFromUser(UserDto userDto, Claim oldClaim, Claim newClaim);
-        Task<(Result Result, string UserId)> RemoveClaimsFromUser(UserDto userDto, List<Claim> claim);
-        Task<(Result Result, string UserId)> RemoveUserFromRoleAsync(UserDto userDto, string role);
-        Task<(Result Result, string UserId)> RemoveUserFromRolesAsync(UserDto userDto, List<string> role);
-        Task<(Result Result, string UserId)> ResetUserAccessFailedCountAsync(UserDto userDto);
-        Task<(Result Result, string UserId)> ResetUserPasswordAsync(UserDto userDto, string token, string newPassword);
-        Task<(Result Result, string UserId)> SetUserTwoFactorLoginEnabledAsync(UserDto userDto, bool isEnable);
-        Task<bool> UserHasPasswordAsync(UserDto userDto);
+        Task<(Result Result, string UserId)> RemoveClaimFromUser(string userId, Claim claim);
+        Task<(Result Result, string UserId)> RemoveClaimsFromUser(string userId, Claim oldClaim, Claim newClaim);
+        Task<(Result Result, string UserId)> RemoveClaimsFromUser(string userId, List<Claim> claim);
+        Task<(Result Result, string UserId)> RemoveUserFromRoleAsync(string userId, string role);
+        Task<(Result Result, string UserId)> RemoveUserFromRolesAsync(string userId, List<string> role);
+        Task<(Result Result, string UserId)> ResetUserAccessFailedCountAsync(string userId);
+        Task<(Result Result, string UserId)> ResetUserPasswordAsync(string userId, string token, string newPassword);
+        Task<(Result Result, string UserId)> SetUserTwoFactorLoginEnabledAsync(string userId, bool isEnable);
+        Task<bool> UserHasPasswordAsync(string userId);
     }
 }

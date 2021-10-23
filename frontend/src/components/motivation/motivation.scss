@@ -1,0 +1,23 @@
+@import "../../scss/variables";
+
+.motivation {
+	min-height: 450px;
+	background: $theme-background;
+
+	display: flex;
+	vertical-align: middle;
+	justify-content: center;
+	align-items: center;
+
+	p {
+		line-height: 40px;
+	}
+
+	p:nth-child(1) {
+		color: $theme-primary;
+		font-size: 3rem;
+		margin-top: 20px;
+		margin-bottom: 60px;
+		font-family: $theme-font-secondary;
+	}
+}

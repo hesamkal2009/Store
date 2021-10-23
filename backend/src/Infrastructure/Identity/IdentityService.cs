@@ -72,88 +72,88 @@ namespace Infrastructure.Identity
 
         public async Task<(Result Result, string UserId)> CreateUserAsync(UserDto userDto)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = _mapper.Map<ApplicationUser>(userDto);
 
             IdentityResult result = await _userManager.CreateAsync(user, user.PasswordHash);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> AddUserToRoleAsync(UserDto userDto, string role)
+        public async Task<(Result Result, string UserId)> AddUserToRoleAsync(string userId, string role)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.AddToRoleAsync(user, role);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> AddUserToRolesAsync(UserDto userDto, List<string> role)
+        public async Task<(Result Result, string UserId)> AddUserToRolesAsync(string userId, List<string> role)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.AddToRolesAsync(user, role);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<bool> AddUserToRolesAsync(UserDto userDto, string role)
+        public async Task<bool> AddUserToRolesAsync(string userId, string role)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             var result = await _userManager.IsInRoleAsync(user, role);
 
             return result;
         }
 
-        public async Task<(Result Result, string UserId)> RemoveUserFromRoleAsync(UserDto userDto, string role)
+        public async Task<(Result Result, string UserId)> RemoveUserFromRoleAsync(string userId, string role)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.RemoveFromRoleAsync(user, role);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> RemoveUserFromRolesAsync(UserDto userDto, List<string> role)
+        public async Task<(Result Result, string UserId)> RemoveUserFromRolesAsync(string userId, List<string> role)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.RemoveFromRolesAsync(user, role);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<IList<string>> GetUserRolesAsync(UserDto userDto)
+        public async Task<IList<string>> GetUserRolesAsync(string userId)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             var result = await _userManager.GetRolesAsync(user);
 
             return result;
         }
 
-        public async Task<(Result Result, string UserId)> AddClaimToUser(UserDto userDto, Claim claim)
+        public async Task<(Result Result, string UserId)> AddClaimToUser(string userId, Claim claim)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.AddClaimAsync(user, claim);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> AddClaimsToUser(UserDto userDto, List<Claim> claims)
+        public async Task<(Result Result, string UserId)> AddClaimsToUser(string userId, List<Claim> claims)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.AddClaimsAsync(user, claims);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<IList<Claim>> GetUserClaimsAsync(UserDto userDto)
+        public async Task<IList<Claim>> GetUserClaimsAsync(string userId)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IList<Claim> result = await _userManager.GetClaimsAsync(user);
 
@@ -170,99 +170,99 @@ namespace Infrastructure.Identity
             return users;
         }
 
-        public async Task<(Result Result, string UserId)> RemoveClaimFromUser(UserDto userDto, Claim claim)
+        public async Task<(Result Result, string UserId)> RemoveClaimFromUser(string userId, Claim claim)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.RemoveClaimAsync(user, claim);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> RemoveClaimsFromUser(UserDto userDto, List<Claim> claim)
+        public async Task<(Result Result, string UserId)> RemoveClaimsFromUser(string userId, List<Claim> claim)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.RemoveClaimsAsync(user, claim);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> RemoveClaimsFromUser(UserDto userDto, Claim oldClaim, Claim newClaim)
+        public async Task<(Result Result, string UserId)> RemoveClaimsFromUser(string userId, Claim oldClaim, Claim newClaim)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.ReplaceClaimAsync(user, oldClaim, newClaim);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> SetUserTwoFactorLoginEnabledAsync(UserDto userDto, bool isEnable)
+        public async Task<(Result Result, string UserId)> SetUserTwoFactorLoginEnabledAsync(string userId, bool isEnable)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.SetTwoFactorEnabledAsync(user, isEnable);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> AddToUserAccessFailedAsync(UserDto userDto)
+        public async Task<(Result Result, string UserId)> AddToUserAccessFailedAsync(string userId)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.AccessFailedAsync(user);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<int> GetUserAccessFailedCountAsync(UserDto userDto)
+        public async Task<int> GetUserAccessFailedCountAsync(string userId)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             int result = await _userManager.GetAccessFailedCountAsync(user);
 
             return result;
         }
 
-        public async Task<(Result Result, string UserId)> ResetUserAccessFailedCountAsync(UserDto userDto)
+        public async Task<(Result Result, string UserId)> ResetUserAccessFailedCountAsync(string userId)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.ResetAccessFailedCountAsync(user);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> AddUserPasswordAsync(UserDto userDto)
+        public async Task<(Result Result, string UserId)> AddUserPasswordAsync(string userId)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.AddPasswordAsync(user, user.PasswordHash);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> ChangeUserPasswordAsync(UserDto userDto, string oldPassoword, string newPassword)
+        public async Task<(Result Result, string UserId)> ChangeUserPasswordAsync(string userId, string oldPassoword, string newPassword)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.ChangePasswordAsync(user, oldPassoword, newPassword);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<(Result Result, string UserId)> ChangeUserPhoneNumberAsync(UserDto userDto, string oldPhoneNumber, string newPhoneNumber)
+        public async Task<(Result Result, string UserId)> ChangeUserPhoneNumberAsync(string userId, string oldPhoneNumber, string newPhoneNumber)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.ChangePhoneNumberAsync(user, oldPhoneNumber, newPhoneNumber);
 
             return (result.ToApplicationResult(), user.Id);
         }
 
-        public async Task<bool> CheckUserPasswordAsync(UserDto userDto, string givenPassword)
+        public async Task<bool> CheckUserPasswordAsync(string userId, string givenPassword)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             bool result = await _userManager.CheckPasswordAsync(user, givenPassword);
 
@@ -276,18 +276,18 @@ namespace Infrastructure.Identity
             return _mapper.Map<UserDto>(result);
         }
 
-        public async Task<bool> UserHasPasswordAsync(UserDto userDto)
+        public async Task<bool> UserHasPasswordAsync(string userId)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             bool result = await _userManager.HasPasswordAsync(user);
 
             return result;
         }
 
-        public async Task<(Result Result, string UserId)> ResetUserPasswordAsync(UserDto userDto, string token, string newPassword)
+        public async Task<(Result Result, string UserId)> ResetUserPasswordAsync(string userId, string token, string newPassword)
         {
-            ApplicationUser user = MapUserDtoToApplicationUser(userDto);
+            ApplicationUser user = await GetUserByIdAsync(userId);
 
             IdentityResult result = await _userManager.ResetPasswordAsync(user, token, newPassword);
 
@@ -357,15 +357,13 @@ namespace Infrastructure.Identity
             return token;
         }
 
-        private ApplicationUser MapUserDtoToApplicationUser(UserDto userDto)
+        private async Task<ApplicationUser> GetUserByIdAsync(string userId)
         {
-            var user = UserMapper(userDto);
+            ApplicationUser user = await _userManager.Users.FirstAsync(u => u.Id == userId);
 
             Guard.Against.Null(user, nameof(user), "User didn't found!");
 
             return user;
         }
-
-        private ApplicationUser UserMapper(UserDto userDto) => _mapper.Map<ApplicationUser>(userDto);
     }
 }

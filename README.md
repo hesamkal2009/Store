@@ -16,8 +16,6 @@ This is a sample that is implemented by the following technologies:
 -   MediatR
 -   Dotnet-Env
 -   Swagger UI with JWT support
--   MongoDB for storing Blob files
--   Redis for implementing caching behavior
 
 ## On The Frontend side
 
@@ -32,7 +30,6 @@ This is a sample that is implemented by the following technologies:
 -   Reselect
 -   Axios
 -   SASS
--   Formik
 -   Joi (Form Validation)
 -   Styled-Components
 -   React-App-Polyfill

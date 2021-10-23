@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Persistence
 {
-    public class ApplicationDbContext 
+    public class ApplicationDbContext
         : IdentityDbContext<
             ApplicationUser,
             ApplicationRole,
@@ -50,6 +50,7 @@ namespace Infrastructure.Persistence
         public DbSet<FoodCategory> FoodCategories { get; set; }
         public DbSet<TodoList> TodoLists { get; set; }
         public DbSet<TodoItem> TodoItems { get; set; }
+        public DbSet<ContactMe> ContactMes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

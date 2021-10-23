@@ -23,7 +23,7 @@ function removeJwtToken() {
 export async function login(
 	email: string,
 	password: string,
-	rememberMe: boolean,
+	rememberMe: boolean = false,
 	prevPathName: string = "/"
 ) {
 	const command: LoginCommand = {
