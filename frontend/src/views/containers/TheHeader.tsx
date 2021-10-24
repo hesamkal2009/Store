@@ -98,10 +98,10 @@ const TheHeader: React.FC<RouteComponentProps<{}>> = (props) => {
 										: ""
 								}
 							>
-								<LinkContainer to="/profile">
+								{/* <LinkContainer to="/profile">
 									<NavDropdown.Item>Profile</NavDropdown.Item>
 								</LinkContainer>
-								<NavDropdown.Divider />
+								<NavDropdown.Divider /> */}
 								<LinkContainer to="#">
 									<NavDropdown.Item
 										onClick={() => handleLogout()}
