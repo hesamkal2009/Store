@@ -156,32 +156,12 @@ export const getPaginatedFoods =
 		return dispatch(
 			apiCallBegan({
 				url: config.food.urls.get,
-				onStart: paginatedListOfFoodDtosRequested.type, 
+				onStart: paginatedListOfFoodDtosRequested.type,
 				onSuccess: paginatedListOfFoodDtosReceived.type,
-				onError: paginatedListOfFoodDtosRequestFailed.type
+				onError: paginatedListOfFoodDtosRequestFailed.type,
 			})
 		);
 	};
-
-//#endregion
-
-//#region //* Selectors
-
-const PaginatedFoods = (
-	state: PaginatedListOfFoodDto
-): Array<FoodDto> | undefined => state.items;
-
-export const selectPaginatedFoodsActive = () =>
-	createSelector<
-		PaginatedListOfFoodDto,
-		FoodDto[] | undefined,
-		FoodDto[] | undefined
-	>(PaginatedFoods, (items) => items);
-
-const selectPaginatedFoods = (state: RootState) => state.entities.food.items;
-
-export const selectActivePaginatedFoods = () =>
-	createSelector(selectPaginatedFoods, (fc): FoodDto[] | undefined => fc);
 
 //#endregion
 

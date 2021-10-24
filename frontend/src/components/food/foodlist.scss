@@ -1,0 +1,21 @@
+@import "../../scss/variables";
+
+.foodList__card {
+	width: 20rem;
+
+	.foodList__card:hover {
+		transform: scale(2px, 0.5);
+	}
+
+	.foodList__badge {
+		width: 100px;
+		height: 40px;
+		text-align: center;
+		vertical-align: middle;
+		padding-top: 15px;
+	}
+}
+.foodList__card:hover {
+	width: 20.1rem;
+	color: $theme-primary;
+}

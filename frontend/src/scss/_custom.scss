@@ -88,3 +88,7 @@ hr:not([size]) {
 .navbar-light .navbar-nav .nav-link:focus {
 	color: $theme-primary-hover !important;
 }
+.popover {
+	width: 35vw !important;
+	max-width: 50vw !important;
+}

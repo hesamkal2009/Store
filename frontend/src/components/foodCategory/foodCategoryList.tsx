@@ -1,43 +1,53 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/_hooks";
-import {
-	getFoodCategorys,
-	selectPaginatedListOfFoodCategorysActive,
-	selectActivePaginatedListOfFoodCategorys,
-} from "../../app/foodCategorySlice";
-import { getState, RootState } from "../../app/_store/store";
 import { ListGroup, Image, Badge } from "react-bootstrap";
+
+import iconAllFoods from "../../assets/images/iconAllFoods.png";
 import iconInternational from "../../assets/images/iconInternational.png";
 import iconKebabrice from "../../assets/images/iconKebabrice.png";
 import iconKhoresht from "../../assets/images/iconKhoresht.png";
+import { FoodCategoryDto } from "../../services/web-api-client";
 
 import "./foodCategoryList.scss";
+import { FoodDto } from "./../../services/web-api-client";
 
-export interface IFoodCategoryProps {}
+const FoodCategory = (props: any) => {
+	const { filterChange } = props;
 
-const FoodCategory = (props: IFoodCategoryProps) => {
-	const foodCategorys = useAppSelector(
-		(state: RootState) => state.entities.foodCategory
-	);
-
-	const foodCategoryItems = useAppSelector((state: RootState): any => state);
-
-	const foodCategorysActive =
-		selectPaginatedListOfFoodCategorysActive(true)(foodCategorys);
-	const activeFoodCategorys =
-		selectActivePaginatedListOfFoodCategorys(true)(foodCategoryItems);
-
-	const dispatch = useAppDispatch();
-	useEffect(() => {
-		getFoodCategorys()(dispatch, getState());
-	}, [dispatch]);
+	const handleFilterChange = (categoryId: number) => {
+		filterChange(categoryId);
+	};
 
 	return (
 		<>
 			<ListGroup>
-				{foodCategorysActive?.map((fc) => (
+				<label className="pointer" key="all">
+					<ListGroup.Item
+						className="d-flex justify-content-between align-items-start mb-1"
+						onClick={(e) => handleFilterChange(0)}
+					>
+						<Image
+							src={iconAllFoods}
+							alt="Select All Foods In Menu"
+						/>
+						<Badge bg="secondary" pill>
+							1
+						</Badge>
+						<div className="ms-2 me-auto">
+							<div className="fw-bold text-primary">
+								All Items On The Menu
+							</div>
+							Displays all items on the menu.
+						</div>
+						<Badge bg="primary" pill>
+							{props.foodList.length} Items
+						</Badge>
+					</ListGroup.Item>
+				</label>
+				{props.foodCategoryList?.map((fc: FoodCategoryDto) => (
 					<label className="pointer" key={fc.id}>
-						<ListGroup.Item className="d-flex justify-content-between align-items-start mb-1">
+						<ListGroup.Item
+							className="d-flex justify-content-between align-items-start mb-1"
+							onClick={(e) => handleFilterChange(fc.id)}
+						>
 							<Image
 								src={
 									fc.id === 1
@@ -49,7 +59,7 @@ const FoodCategory = (props: IFoodCategoryProps) => {
 								alt={fc.name}
 							/>
 							<Badge bg="secondary" pill>
-								{fc.id}
+								{fc.id + 1}
 							</Badge>
 							<div className="ms-2 me-auto">
 								<div className="fw-bold text-primary">
@@ -58,7 +68,12 @@ const FoodCategory = (props: IFoodCategoryProps) => {
 								{fc.description}
 							</div>
 							<Badge bg="primary" pill>
-								14 Items
+								{
+									props.foodList.filter(
+										(food: FoodDto) =>
+											food.foodCategoryId === fc.id
+									).length
+								}
 							</Badge>
 						</ListGroup.Item>
 					</label>

@@ -1234,10 +1234,15 @@
     "FoodDto": {
       "type": "object",
       "required": [
+        "id",
         "foodCategoryId",
         "price"
       ],
       "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
         "foodCategoryId": {
           "type": "integer",
           "format": "int32"

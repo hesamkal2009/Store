@@ -1,6 +1,7 @@
 import React from "react";
 
 const home = React.lazy(() => import("../views/home/Home"));
+const cart = React.lazy(() => import("../components/cart/cart"));
 const shop = React.lazy(() => import("../components/shop/shop"));
 const login = React.lazy(() => import("../components/login/Login"));
 const register = React.lazy(() => import("../components/register/Register"));
@@ -15,6 +16,7 @@ const page404 = React.lazy(() => import("../pages/errors/Page404"));
 const page500 = React.lazy(() => import("../pages/errors/Page500"));
 
 const routes = [
+	{ path: "/cart", name: "Cart", component: cart },
 	{ path: "/shop", name: "Shop", component: shop },
 	{ path: "/food", name: "Food", component: food },
 	{ path: "/about", name: "About Page", component: about },

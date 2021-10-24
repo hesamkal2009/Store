@@ -1305,6 +1305,7 @@ export interface PaginatedListOfFoodDto {
 }
 
 export interface FoodDto {
+    id: number;
     foodCategoryId: number;
     name?: string | undefined;
     price: number;

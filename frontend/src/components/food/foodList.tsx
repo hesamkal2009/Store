@@ -1,11 +1,4 @@
-import { useEffect } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/_hooks";
-import {
-	getPaginatedFoods,
-	selectActivePaginatedFoods,
-	selectPaginatedFoodsActive,
-} from "../../app/foodSlice";
-import { getState, RootState } from "../../app/_store/store";
+import React from "react";
 import { Button, Card, Badge, Row, Col } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import koobideh from "../../assets/images/koobideh.jpg";
@@ -15,24 +8,11 @@ import salad from "../../assets/images/salad.jpg";
 import frenchFries from "../../assets/images/frenchFries.jpg";
 import sohan from "../../assets/images/sohan.jpg";
 import chocolate from "../../assets/images/chocolate.jpg";
-import { chdir } from "process";
 import { addCommas, removeNonNumeric } from "../../library/utils/number";
+import { FoodDto } from "../../services/web-api-client";
+import "./foodlist.scss";
 
-export interface IFoodProps {}
-
-const Food = (props: IFoodProps) => {
-	const foods = useAppSelector((state: RootState) => state.entities.food);
-
-	const foodItems = useAppSelector((state: RootState): any => state);
-
-	const foodsActive = selectActivePaginatedFoods()(getState());
-	const activeFoods = selectPaginatedFoodsActive()(foodItems);
-
-	const dispatch = useAppDispatch();
-	useEffect(() => {
-		getPaginatedFoods(1, 1)(dispatch, getState());
-	}, []);
-
+const Food = (props: any) => {
 	const pictureProvider = (foodName: string | undefined) => {
 		switch (foodName) {
 			case "Koobideh":
@@ -54,18 +34,30 @@ const Food = (props: IFoodProps) => {
 		}
 	};
 
+	const foodlistFilter = (selectedFilter: number): Array<FoodDto> => {
+		return selectedFilter === 0
+			? props.foodList
+			: props.foodList.filter(
+					(o: FoodDto) => o.foodCategoryId === selectedFilter
+			  );
+	};
+
+	const handleAddToCart = (foodId: number) => {
+		props.addToCart(foodId);
+	};
+
 	return (
 		<div>
 			<Row>
-				{foodsActive?.map((fc) => (
-					<>
+				{foodlistFilter(props.selectedFilter)?.map((fc: FoodDto) => (
+					<React.Fragment key={fc.name}>
 						<Col
-							md={{ span: 3 }}
-							xs={{ span: 6 }}
+							md={{ span: 3, offset: 2 }}
+							sm={{ span: 4, offset: 3 }}
+							xs={{ span: 9, offset: 2 }}
 							className="mt-4 mb-4"
-							key={fc.name}
 						>
-							<Card style={{ width: "20rem" }}>
+							<Card className="foodList__card">
 								<Card.Img
 									variant="top"
 									src={pictureProvider(fc.name)}
@@ -83,11 +75,18 @@ const Food = (props: IFoodProps) => {
 												? "warning"
 												: "danger"
 										}
-										className="pull-right"
+										className="pull-right foodList__badge"
 									>
 										{fc.foodInventoryStatus?.name}
 									</Badge>
-									<Button variant="secondary">
+									<Button
+										variant="dark"
+										disabled={
+											fc.foodInventoryStatus?.name ===
+											"RanOut"
+										}
+										onClick={() => handleAddToCart(fc.id)}
+									>
 										<FontAwesomeIcon
 											icon={["fas", "plus-circle"]}
 										/>{" "}
@@ -101,7 +100,7 @@ const Food = (props: IFoodProps) => {
 								</Card.Body>
 							</Card>
 						</Col>
-					</>
+					</React.Fragment>
 				))}
 			</Row>
 		</div>
