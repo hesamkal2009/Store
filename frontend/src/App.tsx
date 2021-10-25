@@ -19,6 +19,8 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { ToastContainer } from "react-toastify";
 import fakeLogo from "./assets/images/fakeLogo.png";
 import { Image } from "react-bootstrap";
+import { ProtectedRoute } from "./routes/protectedRoute";
+import adminDashboard from "./views/adminPanel/adminDashboard/adminDashboard";
 
 library.add(far, fas, fab);
 
@@ -47,16 +49,7 @@ function App() {
 			<BrowserRouter>
 				<React.Suspense fallback={loading}>
 					<Switch>
-						{/* <Route
-							exact
-							path="/login"
-							render={(props) => <Login {...props} />}
-						/>
-						<Route
-							exact
-							path="/register"
-							render={(props) => <Register {...props} />}
-						/> */}
+						{/* //? -------------- Public routes  -------------- */}
 						<Route
 							exact
 							path="/401"
@@ -77,6 +70,15 @@ function App() {
 							path="/500"
 							render={(props) => <Page500 {...props} />}
 						/>
+
+						{/* //! -------------- Protected routes  -------------- */}
+						<ProtectedRoute
+							exact
+							path="/admin/dashboard"
+							component={adminDashboard}
+						/>
+
+						{/* //* -------------- Passing control internal routes  -------------- */}
 						<Route
 							path="/"
 							render={(props) => <TheLayout {...props} />}

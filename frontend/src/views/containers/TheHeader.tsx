@@ -25,7 +25,7 @@ const TheHeader: React.FC<RouteComponentProps<{}>> = (props) => {
 	);
 
 	const handleRedirectToLoginPage = () => {
-		props.history.push("/login", props.location);
+		props.history.push("/login", { from: props.location });
 	};
 
 	const handleLogout = (): void => {
@@ -63,10 +63,15 @@ const TheHeader: React.FC<RouteComponentProps<{}>> = (props) => {
 							<Nav.Link>About</Nav.Link>
 						</LinkContainer>
 						{!user && (
-							<LinkContainer to="/register">
-								<Nav.Link>Register</Nav.Link>
-							</LinkContainer>
+							<>
+								<LinkContainer to="/register">
+									<Nav.Link>Register</Nav.Link>
+								</LinkContainer>
+							</>
 						)}
+						<LinkContainer to="/admin/dashboard">
+							<Nav.Link>Protected Page</Nav.Link>
+						</LinkContainer>
 						<LinkContainer to="/shop">
 							<Nav.Link>Order</Nav.Link>
 						</LinkContainer>
@@ -99,7 +104,9 @@ const TheHeader: React.FC<RouteComponentProps<{}>> = (props) => {
 								}
 							>
 								{/* <LinkContainer to="/profile">
-									<NavDropdown.Item>Profile</NavDropdown.Item>
+									<NavDropdown.Item>
+										Profile
+									</NavDropdown.Item>
 								</LinkContainer>
 								<NavDropdown.Divider /> */}
 								<LinkContainer to="#">

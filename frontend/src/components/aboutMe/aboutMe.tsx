@@ -33,8 +33,8 @@ const AboutMe: React.FC<IAboutMeProps> = (props) => {
 						capacity. I mostly prefer the front-end, back-end, and
 						SQL Server development rather than implementing
 						front-end designs. Moreover, I have plans of learning
-						Docker and Azure in place, to acquire the
-						afore-mentioned skills ASAP.
+						Docker and Azure in place, to acquire the aforementioned
+						skills ASAP.
 					</p>
 				</Col>
 				<Col md={{ span: 4 }}>

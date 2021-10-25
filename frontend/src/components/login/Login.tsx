@@ -27,13 +27,18 @@ class Login extends React.Component<RouteComponentProps<{}>> {
 	handleLogin = (e: any) => {
 		e.preventDefault();
 		const { userName, password, rememberMe } = this.state;
-		login(userName, password, rememberMe, this.prevLocation?.pathname);
+		login(
+			userName,
+			password,
+			rememberMe,
+			this.prevLocation?.from?.pathname
+		);
 	};
 
 	render() {
-		if (getCurrentUser()) {
+		if (getCurrentUser() || this.prevLocation.from.pathname === "/login") {
 			this.props.history.push(
-				this.prevLocation ? this.prevLocation.pathname : "/"
+				this.prevLocation?.from ? this.prevLocation?.from.pathname : "/"
 			);
 		}
 		return (

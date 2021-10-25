@@ -11,7 +11,6 @@ import { toast } from "react-toastify";
 import "./contactMe.scss";
 
 class ContactMe extends React.Component<RouteComponentProps<{}>> {
-	prevLocation: any = this.props.location.state;
 	state = {
 		fullName: "",
 		subject: "",

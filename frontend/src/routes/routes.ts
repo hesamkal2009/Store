@@ -16,19 +16,29 @@ const page404 = React.lazy(() => import("../pages/errors/Page404"));
 const page500 = React.lazy(() => import("../pages/errors/Page500"));
 
 const routes = [
-	{ path: "/cart", name: "Cart", component: cart },
-	{ path: "/shop", name: "Shop", component: shop },
-	{ path: "/food", name: "Food", component: food },
-	{ path: "/about", name: "About Page", component: about },
-	{ path: "/foodCategory", name: "Food Category", component: foodCategory },
-	{ path: "/login", name: "Login", component: login },
-	{ path: "/register", name: "Register", component: register },
-	{ path: "/401", name: "Page 401", component: page401 },
-	{ path: "/403", name: "Page 403", component: page403 },
-	{ path: "/404", name: "Page 404", component: page404 },
-	{ path: "/500", name: "Page 500", component: page500 },
-	{ path: "/", exact: true, name: "Home", component: home },
-	{ path: "/", name: "Home" },
+	{ path: "/cart", name: "Cart", component: cart, protected: true },
+	{ path: "/shop", name: "Shop", component: shop, protected: false },
+	{ path: "/food", name: "Food", component: food, protected: false },
+	{ path: "/about", name: "About Page", component: about, protected: false },
+	{
+		path: "/foodCategory",
+		name: "Food Category",
+		component: foodCategory,
+		protected: false,
+	},
+	{ path: "/login", name: "Login", component: login, protected: false },
+	{
+		path: "/register",
+		name: "Register",
+		component: register,
+		protected: false,
+	},
+	{ path: "/401", name: "Page 401", component: page401, protected: false },
+	{ path: "/403", name: "Page 403", component: page403, protected: false },
+	{ path: "/404", name: "Page 404", component: page404, protected: false },
+	{ path: "/500", name: "Page 500", component: page500, protected: false },
+	{ path: "/", exact: true, name: "Home", component: home, protected: false },
+	{ path: "/", name: "Home", protected: false },
 ];
 
 export default routes;

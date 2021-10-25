@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 import { Redirect, Route, RouteComponentProps, Switch } from "react-router-dom";
+import { ProtectedRoute } from "../../routes/protectedRoute";
 import "../../scss/style.scss";
 
 //! routes config
@@ -19,7 +20,8 @@ class TheContent extends React.Component<RouteComponentProps<{}>> {
 					<Switch>
 						{routes.map((route, idx) => {
 							return (
-								route.component && (
+								route.component &&
+								(!route.protected ? (
 									<Route
 										key={idx}
 										path={route.path}
@@ -28,7 +30,16 @@ class TheContent extends React.Component<RouteComponentProps<{}>> {
 											<route.component {...props} />
 										)}
 									/>
-								)
+								) : (
+									<ProtectedRoute
+										key={idx}
+										path={route.path}
+										exact={route.exact}
+										render={(
+											props: RouteComponentProps<{}>
+										) => <route.component {...props} />}
+									/>
+								))
 							);
 						})}
 						<Redirect exact from="/home" to="/" />

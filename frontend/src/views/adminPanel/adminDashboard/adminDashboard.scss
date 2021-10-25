@@ -1,0 +1,36 @@
+@import "../../../scss/variables";
+
+.dashboard__intro {
+	height: 50vh;
+	margin-top: 20%;
+	padding-bottom: 20%;
+	margin-bottom: 20%;
+}
+
+.dashboard__intro-text {
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+
+	width: 100%;
+	padding: 40px;
+
+	text-align: justify;
+	text-align-last: center;
+
+	p {
+		text-align: justify;
+		text-align-last: center;
+		font-size: 3rem;
+		color: $theme-primary;
+		font-family: $theme-font-secondary;
+	}
+}
+
+.dashboard__intro-button {
+	display: flex;
+	align-items: center;
+	align-content: center;
+	justify-content: center;
+}
