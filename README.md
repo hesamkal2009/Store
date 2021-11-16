@@ -1,14 +1,14 @@
 # Store Template
 
-This project is a simple template for my projects. This project was not meant to be a silver bullet for every problem and scenario and it's just a boilerplate to get projects quickly up and running.
+This project is a simple template for my projects. This project was not meant to be a silver bullet for every problem and scenario, and it's just a boilerplate to get projects quickly up and running.
 
 ## A few things to bear in mind:
 - I developed this project with just two goals in mind.
   - First, I wanted to practice what I've learned in my free/spare time.
   - Second, I needed a sample project with proper piping and structure to make me faster.
-- This project was not created by A Designer
-  - You may find certain problems when you interact with UI. For instance, you might wonder why Cart Component does not have a Payment button. Some of these features/bugs were intentional to finish the project faster and some of them are just bugs that I might fix them later.
-- Feel free to make a pull request and improve this in any way you may see fit, I'll merge it If it appeals to me either.
+- A Designer did not create this project
+  - You may find specific problems when you interact with UI. For instance, you might wonder why Cart Component does not have a Payment button. Some of these features/bugs were intentional to finish the project faster, and some of them are just bugs that I might fix later.
+- Feel free to make a pull request and improve this in any way you see fit. I'll merge if it appeals to me, either.
 
 
 ## On The Backend Side
