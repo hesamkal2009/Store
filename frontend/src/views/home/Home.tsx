@@ -2,7 +2,6 @@ import React from "react";
 import { RouteComponentProps } from "react-router-dom";
 import { SlideShow } from "../../components/slideShow/slideShow";
 import AboutMe from "../../components/aboutMe/aboutMe";
-import { Row, Col } from "react-bootstrap";
 //!
 import legend from "../../assets/images/legend.jpg";
 import haftseen from "../../assets/images/haftseen.jpg";

@@ -1,7 +1,7 @@
 using Application.Common.Interfaces;
 using Domain.Common;
 using Domain.Entities;
-using IdentityServer4.EntityFramework.Options;
+using Duende.IdentityServer.EntityFramework.Options;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;

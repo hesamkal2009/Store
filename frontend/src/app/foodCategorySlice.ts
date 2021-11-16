@@ -1,7 +1,7 @@
 //#region //! Default Imports
 import { createSlice, PayloadAction, createAsyncThunk } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { apiCallBegan, apiCallSuccess, apiCallFailed } from "./_actions/api";
+import { apiCallBegan } from "./_actions/api";
 import {
 	FoodCategoryDto,
 	PaginatedListOfFoodCategoryDto,
@@ -9,7 +9,6 @@ import {
 import config from "../config.json";
 import moment from "moment";
 import { AppDispatch, RootState } from "./_store/store";
-import { logToConsole } from "./_actions/logger";
 //#endregion
 
 //#region //* Custom Imports
@@ -44,7 +43,7 @@ const customApiCall = (params: any) => {
 
 export const doAction =
 	(params: any) => (dispatch: AppDispatch, getState: Function) => {
-		const currentValue = getFoodCategorys();
+		getFoodCategorys();
 		const payload: PaginatedListOfFoodCategoryDto = {
 			items: [],
 			pageIndex: 1,
